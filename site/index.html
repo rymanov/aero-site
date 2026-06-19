@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!--
+    Source of truth for this page's copy and structure is the Aero wiki, NOT this file:
+    github.com/rymanov/aero-wiki → directions/website-v1.md
+    Author content changes in the wiki first, then implement them here.
+    If the wiki and this file disagree, the wiki wins and this HTML is the bug.
+  -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aero IPTV — A native Mac player for your playlists</title>
@@ -122,51 +128,131 @@
       </div>
     </section>
 
-    <!-- ── Features ── -->
-    <section class="section-features">
-      <div class="section-inner">
+    <!-- ── Intro line ── -->
+    <section class="section-intro">
+      <div class="intro-inner reveal">
         <p class="section-label">What's inside</p>
+        <h2 class="intro-head">Everything you need to watch.<br><span class="intro-dim">Nothing you don't.</span></h2>
+      </div>
+    </section>
+
+    <!-- ── Showcase: Programme guide ── -->
+    <section class="showcase">
+      <div class="showcase-inner">
+        <div class="showcase-copy reveal">
+          <span class="showcase-kicker kicker-teal">Programme guide</span>
+          <h3>A guide that<br>earns its name.</h3>
+          <p>Point Aero at your XMLTV source and every channel shows now &amp; next, a live progress bar, and a full scrollable guide — right where you're watching.</p>
+        </div>
+        <div class="showcase-visual reveal reveal-delay">
+          <div class="mini-panel">
+            <div class="mini-panel-head">
+              <span>Now &amp; Next</span>
+              <span class="mini-pill">Today</span>
+            </div>
+            <div class="epg-row">
+              <span class="epg-dot" style="background:#1a7a28"></span>
+              <div class="epg-meta">
+                <div class="epg-name">National Geographic HD</div>
+                <div class="epg-now">Planet Earth IV</div>
+                <div class="epg-bar"><span style="width:62%"></span></div>
+              </div>
+              <div class="epg-next">21:00<br><em>Wonders</em></div>
+            </div>
+            <div class="epg-row">
+              <span class="epg-dot" style="background:#c8102e"></span>
+              <div class="epg-meta">
+                <div class="epg-name">BBC News</div>
+                <div class="epg-now">The World Tonight</div>
+                <div class="epg-bar"><span style="width:38%"></span></div>
+              </div>
+              <div class="epg-next">21:30<br><em>HARDtalk</em></div>
+            </div>
+            <div class="epg-row">
+              <span class="epg-dot" style="background:#003087"></span>
+              <div class="epg-meta">
+                <div class="epg-name">Sky Sports Main Event</div>
+                <div class="epg-now">Premier League Live</div>
+                <div class="epg-bar"><span style="width:80%"></span></div>
+              </div>
+              <div class="epg-next">22:00<br><em>Highlights</em></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Showcase: Channel browser ── -->
+    <section class="showcase">
+      <div class="showcase-inner showcase-reverse">
+        <div class="showcase-copy reveal">
+          <span class="showcase-kicker kicker-warm">Channel browser</span>
+          <h3>Browse without<br>missing a beat.</h3>
+          <p>The channel list slides over the still-playing video — search, filter by group, jump to favourites. Audio never cuts, so returning is instant.</p>
+        </div>
+        <div class="showcase-visual reveal reveal-delay">
+          <div class="mini-panel mini-list">
+            <div class="list-search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+              <span>Search channels…</span>
+            </div>
+            <div class="list-pills">
+              <span class="list-pill on">All</span>
+              <span class="list-pill">News</span>
+              <span class="list-pill">Sport</span>
+              <span class="list-pill">Movies</span>
+            </div>
+            <div class="list-group">News</div>
+            <div class="list-row active">
+              <span class="list-logo" style="background:#1a7a28"></span>
+              <span class="list-name">National Geographic HD</span>
+              <span class="list-bars"><i></i><i></i><i></i></span>
+            </div>
+            <div class="list-row">
+              <span class="list-logo" style="background:#c8102e"></span>
+              <span class="list-name">BBC News</span>
+            </div>
+            <div class="list-row">
+              <span class="list-logo" style="background:#e8272a"></span>
+              <span class="list-name">Sky News</span>
+            </div>
+            <div class="list-group">Sport</div>
+            <div class="list-row">
+              <span class="list-logo" style="background:#003087"></span>
+              <span class="list-name">Sky Sports Main Event</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Compact features ── -->
+    <section class="section-grid">
+      <div class="section-inner">
         <div class="feature-grid">
 
-          <article class="feature-card">
-            <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="4" y="8" width="40" height="26" rx="3"/>
-              <path d="M16 42h16M24 34v8"/>
-              <polygon points="19,16 19,26 33,21" fill="currentColor" stroke="none"/>
-            </svg>
-            <h3>One UI, every screen</h3>
-            <p>From a MacBook on your desk to a Mac wired to your TV — one native interface, no mode-switching.</p>
+          <article class="feature-card reveal">
+            <span class="icon-tile">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><polygon points="10,8.5 10,12.5 14,10.5" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <h4>One UI, every screen</h4>
+            <p>From a MacBook on your desk to a Mac wired to the TV — one native interface, no mode-switching.</p>
           </article>
 
-          <article class="feature-card">
-            <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="24" cy="24" r="18"/>
-              <polygon points="20,15 20,33 36,24" fill="currentColor" stroke="none"/>
-            </svg>
-            <h3>Broad format support</h3>
+          <article class="feature-card reveal reveal-delay">
+            <span class="icon-tile">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="10,8 10,16 16,12" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <h4>Broad format support</h4>
             <p>VLC's engine under the hood — HLS, MPEG-TS, and the codecs in your playlist, handled without fuss.</p>
           </article>
 
-          <article class="feature-card">
-            <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="6" y="10" width="36" height="32" rx="3"/>
-              <path d="M6 20h36M16 6v8M32 6v8"/>
-              <rect x="12" y="27" width="8" height="5" rx="1" fill="currentColor" stroke="none"/>
-              <rect x="26" y="27" width="8" height="5" rx="1" fill="currentColor" stroke="none"/>
-              <rect x="12" y="35" width="8" height="5" rx="1" fill="currentColor" stroke="none"/>
-              <rect x="26" y="35" width="14" height="5" rx="1" fill="currentColor" stroke="none"/>
-            </svg>
-            <h3>Programme guide built in</h3>
-            <p>Add an XMLTV EPG source and see now &amp; next for every channel, plus a scrollable guide.</p>
-          </article>
-
-          <article class="feature-card">
-            <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M24 6l5.4 10.9 12 1.75-8.7 8.5 2.05 12-10.75-5.65L14.3 39.15l2.05-12L7.6 18.64l12-1.75z" fill="currentColor" stroke="none" opacity=".25"/>
-              <path d="M24 6l5.4 10.9 12 1.75-8.7 8.5 2.05 12-10.75-5.65L14.3 39.15l2.05-12L7.6 18.64l12-1.75z"/>
-            </svg>
-            <h3>Gets out of your way</h3>
-            <p>Favourites, group filtering, search, fast launch, and resume-last-channel — watching starts fast, every time.</p>
+          <article class="feature-card reveal reveal-delay-2">
+            <span class="icon-tile">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.45 6 .9-4.35 4.25 1.05 6L12 16.9 6.6 19.6l1.05-6L3.3 9.35l6-.9z"/></svg>
+            </span>
+            <h4>Gets out of your way</h4>
+            <p>Favourites, search, fast launch and resume-last-channel — watching starts the moment you open it.</p>
           </article>
 
         </div>
@@ -175,26 +261,31 @@
 
     <!-- ── Bring your own playlist ── -->
     <section class="section-byop">
-      <div class="section-inner">
-        <svg class="byop-icon-wrap" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M24 40l-8 8M40 24l8-8"/>
-          <path d="M20 26l-6 6a10 10 0 0014.1 14.1l6-6M44 38l6-6A10 10 0 0036.1 17.9l-6 6"/>
-          <path d="M26 38l12-12"/>
-        </svg>
-        <h2>Bring your own playlist</h2>
+      <div class="section-inner reveal">
+        <span class="byop-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15l-3 3M15 9l3-3"/><path d="M7.5 10l-2.3 2.3a3.7 3.7 0 0 0 5.2 5.2l2.3-2.3M16.5 14l2.3-2.3a3.7 3.7 0 0 0-5.2-5.2L11.3 8.8"/></svg>
+          Bring your own playlist
+        </span>
+        <h2>Aero ships empty.</h2>
         <p>
-          <strong>Aero ships empty.</strong> It contains no channels, no streams, and no
-          content of any kind.
+          No channels, no streams, no content of any kind. Add an M3U or M3U8 playlist
+          by URL or local file — the one you already use with your provider.
         </p>
-        <p>
-          Add an M3U or M3U8 playlist by URL or local file — the one you already use with
-          your provider. Aero has no affiliation with any service and no visibility into
-          what you watch.
+        <p class="byop-fine">
+          Aero has no affiliation with any service and no visibility into what you watch.
+          You are responsible for ensuring the content you access complies with applicable law.
         </p>
-        <p>
-          You are responsible for ensuring that the content you access through Aero
-          complies with applicable law.
-        </p>
+      </div>
+    </section>
+
+    <!-- ── Closing CTA ── -->
+    <section class="section-cta">
+      <div class="cta-inner reveal">
+        <h2>Your playlists,<br>at their best.</h2>
+        <p>A fast, native Mac player for everything you already own.</p>
+        <a class="badge-link" href="#" aria-label="Download Aero IPTV on the Mac App Store">
+          <img src="assets/badge-mac-app-store.svg" alt="Download on the Mac App Store" width="200" height="51">
+        </a>
       </div>
     </section>
 
@@ -211,6 +302,31 @@
       </nav>
     </div>
   </footer>
+
+  <script>
+    // Tasteful scroll reveal + hero entrance. No dependencies, no requests.
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.documentElement.classList.add('js');
+
+      // Hero settles in once painted.
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { document.body.classList.add('hero-loaded'); });
+      });
+
+      var items = [].slice.call(document.querySelectorAll('.reveal'));
+      if (reduce || !('IntersectionObserver' in window)) {
+        items.forEach(function (el) { el.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+      items.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 
 </body>
 </html>
