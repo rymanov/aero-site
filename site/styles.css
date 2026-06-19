@@ -256,10 +256,6 @@ img { max-width: 100%; height: auto; display: block; }
 .hero-screenshot {
   max-width: 880px;
   margin: 0 auto;
-  border-radius: 18px 18px 0 0;
-  overflow: hidden;
-  /* subtle inner glow to separate from black bg */
-  box-shadow: 0 0 0 1px rgba(255,255,255,.08);
 }
 
 /* ---------- Features ---------- */
@@ -371,6 +367,212 @@ img { max-width: 100%; height: auto; display: block; }
 .section-byop p:last-child { margin-bottom: 0; }
 .section-byop strong { color: var(--text); font-weight: 600; }
 
+/* ---------- Player frame (hero screenshot) ---------- */
+.player-frame {
+  position: relative;
+  border-radius: 18px 18px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.08);
+}
+
+.player-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Top bar — full-width, dark gradient from top (matches app) */
+.player-top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+  text-align: left;
+  background: linear-gradient(to bottom, rgba(0,0,0,.65) 0%, transparent 100%);
+}
+
+/* Header row — chevron, logo, name, badge, actions all vertically centered */
+.player-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.player-logo {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  display: block;
+}
+
+.player-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -.02em;
+  white-space: nowrap;
+}
+
+/* Now / Next — indented to sit under the channel name */
+.player-sub {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-left: 98px;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(0,0,0,.45);
+  border-radius: 999px;
+  padding: 4px 11px;
+  letter-spacing: .02em;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34c759;
+}
+
+.player-now {
+  font-size: 14px;
+  color: rgba(255,255,255,.75);
+  white-space: nowrap;
+}
+
+.player-next {
+  font-size: 13px;
+  color: rgba(255,255,255,.5);
+  white-space: nowrap;
+}
+
+.player-top-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Bare control glyph — no chrome at rest (matches app's ControlButton) */
+.ctrl-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.ctrl-glyph svg { width: 21px; height: 21px; }
+.player-top-actions .ctrl-glyph svg { width: 18px; height: 18px; }
+.ctrl-back { width: 28px; }
+.ctrl-back svg { width: 21px; height: 21px; }
+.ctrl-dim { color: rgba(255,255,255,.28); }
+
+/* Bottom controls — single centered floating pill */
+.player-controls {
+  position: absolute;
+  bottom: 32px; left: 0; right: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.player-pill {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 440px;
+  padding: 11px 18px 9px;
+  border-radius: 20px;
+  background: rgba(20,18,14,.4);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 6px 16px rgba(0,0,0,.4);
+}
+
+.player-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.player-time-label {
+  font-size: 12px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255,255,255,.85);
+  width: 38px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.player-time-right { text-align: left; }
+
+.player-track {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,.22);
+  border-radius: 2px;
+  position: relative;
+}
+
+.player-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 58%;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.player-thumb {
+  position: absolute;
+  top: 50%;
+  left: 58%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0,0,0,.3);
+}
+
+.player-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.player-buttons .ctrl-glyph {
+  width: 38px;
+  height: 38px;
+}
+.player-buttons .ctrl-glyph svg { width: 19px; height: 19px; }
+.player-buttons .ctrl-glyph:nth-child(2) svg,
+.player-buttons .ctrl-glyph:nth-child(4) svg { width: 20px; height: 20px; }
+
+/* Play/pause — prominent, faint ring + fill */
+.ctrl-play {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50%;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.16);
+}
+.ctrl-play svg { width: 25px !important; height: 25px !important; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 680px) {
   :root { --section-v: 64px; }
@@ -382,4 +584,37 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 480px) {
   .site-nav { padding: 0 16px; }
   .hero h1 { letter-spacing: -.04em; }
+}
+
+/* Player overlay scales down with the shrinking hero photo */
+@media (max-width: 620px) {
+  .player-top { padding: 12px; gap: 4px; }
+  .player-head { gap: 9px; }
+  .player-logo { width: 30px; height: 30px; border-radius: 6px; }
+  .player-name { font-size: 15px; }
+  .live-badge { font-size: 10px; padding: 2px 7px; gap: 4px; }
+  .live-dot { width: 5px; height: 5px; }
+  .player-sub { padding-left: 62px; }
+  .player-now { font-size: 11px; }
+  .player-next { font-size: 10px; }
+
+  .player-top-actions { gap: 1px; }
+  .ctrl-glyph { width: 30px; height: 30px; }
+  .ctrl-glyph svg { width: 16px; height: 16px; }
+  .player-top-actions .ctrl-glyph svg { width: 14px; height: 14px; }
+  .ctrl-back { width: 20px; }
+  .ctrl-back svg { width: 16px; height: 16px; }
+
+  .player-controls { bottom: 14px; padding: 0 12px; }
+  .player-pill { max-width: 300px; padding: 8px 12px 7px; gap: 6px; border-radius: 15px; }
+  .player-progress-row { gap: 8px; }
+  .player-time-label { font-size: 10px; width: 30px; }
+  .player-thumb { width: 10px; height: 10px; }
+  .player-buttons { gap: 8px; }
+  .player-buttons .ctrl-glyph { width: 30px; height: 30px; }
+  .player-buttons .ctrl-glyph svg { width: 16px; height: 16px; }
+  .player-buttons .ctrl-glyph:nth-child(2) svg,
+  .player-buttons .ctrl-glyph:nth-child(4) svg { width: 17px; height: 17px; }
+  .ctrl-play { width: 38px !important; height: 38px !important; }
+  .ctrl-play svg { width: 20px !important; height: 20px !important; }
 }
