@@ -29,6 +29,10 @@ The landing page is deliberately *not* byte-locked — only the curated anchor s
 routine marketing-copy polish doesn't trip CI. Privacy/support are legal text and enforce
 in full.
 
+For the landing page the script also enforces **wiki self-consistency**: each anchor must
+appear both in `index.html` *and* in `website-v1.md`'s canonical-copy narrative, so the
+wiki's two views of a load-bearing string can't silently diverge.
+
 ```bash
 python3 site/scripts/check-content-sync.py
 # expects ../aero-wiki; override with AERO_WIKI_DIR=/path/to/aero-wiki

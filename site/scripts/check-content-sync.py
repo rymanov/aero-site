@@ -23,6 +23,14 @@ Two enforcement granularities, by design:
     polish elsewhere on index.html will not trip the check; changing an anchor
     string will, forcing a matching wiki edit.
 
+Wiki self-consistency: for the landing page the enforced strings live in their
+own "Anchor claims (CI-enforced)" section, but the same strings also appear in the
+human-readable "canonical copy" narrative on the same wiki page. To stop those two
+sections silently disagreeing, each anchor is additionally required to appear in
+that narrative section (the page's `mirror` section below). So an anchor cannot be
+changed in one place without CI flagging the other — the wiki cannot contradict
+itself on load-bearing copy.
+
 Scope/limits: this catches the realistic drift — someone edits the HTML copy and
 it falls out of sync with the wiki. It does NOT police text the HTML *adds*
 beyond the enforced claims, and it compares normalized words, not raw bytes (HTML
@@ -33,6 +41,8 @@ Usage:
     python3 site/scripts/check-content-sync.py
     AERO_WIKI_DIR=/path/to/aero-wiki python3 site/scripts/check-content-sync.py
 """
+
+from __future__ import annotations
 
 import html as html_mod
 import os
@@ -45,11 +55,13 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 SITE_DIR = REPO_ROOT / "site"
 WIKI_DIR = Path(os.environ.get("AERO_WIKI_DIR", REPO_ROOT / "aero-wiki"))
 
-# (human label, html file, wiki page, wiki section heading to enforce)
+# (human label, html file, wiki page, section to enforce, mirror section or None)
+# `mirror` is a second section on the SAME wiki page that must also contain every
+# enforced string — a wiki-internal consistency guard (see module docstring).
 PAIRS = [
-    ("Privacy policy", SITE_DIR / "privacy.html", WIKI_DIR / "concepts" / "privacy-policy.md",   "Canonical content"),
-    ("Support page",   SITE_DIR / "support.html", WIKI_DIR / "concepts" / "support-page.md",     "Canonical content"),
-    ("Landing page",   SITE_DIR / "index.html",   WIKI_DIR / "directions" / "website-v1.md",     "Anchor claims (CI-enforced)"),
+    ("Privacy policy", SITE_DIR / "privacy.html", WIKI_DIR / "concepts" / "privacy-policy.md",   "Canonical content", None),
+    ("Support page",   SITE_DIR / "support.html", WIKI_DIR / "concepts" / "support-page.md",     "Canonical content", None),
+    ("Landing page",   SITE_DIR / "index.html",   WIKI_DIR / "directions" / "website-v1.md",     "Anchor claims (CI-enforced)", "Landing page — canonical copy & section intent"),
 ]
 
 # claims with fewer than this many words are skipped (headings / labels)
@@ -71,19 +83,25 @@ def html_main_text(path: Path) -> str:
     return normalize(html_mod.unescape(body))
 
 
+def section_body(path: Path, section: str) -> str:
+    """Raw markdown between the named '## <section>' heading and the next '## '
+    heading (or end of file)."""
+    text = path.read_text(encoding="utf-8")
+    pattern = rf"^##\s+{re.escape(section)}\s*$(.*?)(?=^##\s|\Z)"
+    m = re.search(pattern, text, re.M | re.S)
+    if not m:
+        raise SystemExit(f"ERROR: no '## {section}' section in {path}")
+    return m.group(1)
+
+
 def wiki_claims(path: Path, section: str) -> list[str]:
     """
     Normalized claim blocks from the named '## <section>' heading, up to the next
     '## ' heading or end of file. One block per non-empty, non-heading line
     (lines starting with '#' — including '###' sub-headings — are skipped).
     """
-    text = path.read_text(encoding="utf-8")
-    pattern = rf"^##\s+{re.escape(section)}\s*$(.*?)(?=^##\s|\Z)"
-    m = re.search(pattern, text, re.M | re.S)
-    if not m:
-        raise SystemExit(f"ERROR: no '## {section}' section in {path}")
     claims = []
-    for line in m.group(1).splitlines():
+    for line in section_body(path, section).splitlines():
         line = line.strip()
         if not line or line.startswith("#"):     # skip blanks and sub-headings
             continue
@@ -94,16 +112,25 @@ def wiki_claims(path: Path, section: str) -> list[str]:
     return claims
 
 
-def check_pair(label: str, html_path: Path, wiki_path: Path, section: str) -> list[str]:
+def check_pair(label: str, html_path: Path, wiki_path: Path, section: str,
+               mirror: str | None) -> tuple[list[str], list[str]]:
+    """Return (html_failures, mirror_failures): enforced strings missing from the
+    HTML <main>, and (if a mirror section is given) from the wiki's narrative
+    section on the same page."""
     for p in (html_path, wiki_path):
         if not p.exists():
             raise SystemExit(f"ERROR: missing file {p}")
-    haystack = " " + html_main_text(html_path) + " "
-    failures = []
+    html_hay = " " + html_main_text(html_path) + " "
+    mirror_hay = " " + normalize(section_body(wiki_path, mirror)) + " " if mirror else None
+
+    html_failures, mirror_failures = [], []
     for original, norm in wiki_claims(wiki_path, section):
-        if (" " + norm + " ") not in haystack:
-            failures.append(original)
-    return failures
+        needle = " " + norm + " "
+        if needle not in html_hay:
+            html_failures.append(original)
+        if mirror_hay is not None and needle not in mirror_hay:
+            mirror_failures.append(original)
+    return html_failures, mirror_failures
 
 
 def main() -> int:
@@ -113,22 +140,31 @@ def main() -> int:
         return 2
 
     total = 0
-    for label, html_path, wiki_path, section in PAIRS:
-        failures = check_pair(label, html_path, wiki_path, section)
-        if failures:
-            total += len(failures)
-            print(f"✗ {label}: {len(failures)} canonical claim(s) missing from "
-                  f"{html_path.relative_to(REPO_ROOT)}:")
-            for f in failures:
-                print(f"    • {f}")
-        else:
+    for label, html_path, wiki_path, section, mirror in PAIRS:
+        html_failures, mirror_failures = check_pair(label, html_path, wiki_path, section, mirror)
+        if not html_failures and not mirror_failures:
             print(f"✓ {label}: in sync with {wiki_path.relative_to(WIKI_DIR.parent)}")
+            continue
+
+        if html_failures:
+            total += len(html_failures)
+            print(f"✗ {label}: {len(html_failures)} claim(s) missing from "
+                  f"{html_path.relative_to(REPO_ROOT)}:")
+            for f in html_failures:
+                print(f"    • {f}")
+        if mirror_failures:
+            total += len(mirror_failures)
+            print(f"✗ {label}: {len(mirror_failures)} anchor(s) not found in the wiki's "
+                  f"'{mirror}' section — the wiki contradicts itself:")
+            for f in mirror_failures:
+                print(f"    • {f}")
 
     if total:
         print(f"\nFAIL: {total} claim(s) drifted. The wiki is the source of truth — "
-              f"update the HTML to match, or change the wiki first if the copy should change.")
+              f"update the HTML to match, or change the wiki first if the copy should change. "
+              f"If an anchor is missing from the wiki narrative, reconcile the two wiki sections.")
         return 1
-    print("\nOK: website legal/support pages match the wiki.")
+    print("\nOK: website pages match the wiki, and the wiki is self-consistent.")
     return 0
 
 
