@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Simple "A" lettermark in a rounded square -->
+  <rect width="32" height="32" rx="8" fill="#0071e3"/>
+  <text x="16" y="23" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="20" font-weight="700" fill="#ffffff">A</text>
+</svg>

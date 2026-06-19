@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#111111"/>
+  <!-- Subtle grid lines -->
+  <rect width="1200" height="630" fill="url(#grid)" opacity=".04"/>
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0V60" fill="none" stroke="#fff" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <!-- App icon circle -->
+  <rect x="480" y="160" width="80" height="80" rx="20" fill="#0071e3"/>
+  <text x="520" y="218" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="52" font-weight="700" fill="#ffffff">A</text>
+  <!-- App name -->
+  <text x="600" y="316" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="52" font-weight="700" fill="#ffffff">Aero IPTV</text>
+  <!-- Tagline -->
+  <text x="600" y="372" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="24" fill="#8e8e93">A fast, native Mac player for the playlists you already own.</text>
+  <!-- URL -->
+  <text x="600" y="490" text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="20" fill="#6db3ff">aeroplay.tv</text>
+</svg>
