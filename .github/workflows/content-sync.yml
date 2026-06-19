@@ -20,10 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout site
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Checkout wiki (source of truth)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: rymanov/aero-wiki
           path: aero-wiki
