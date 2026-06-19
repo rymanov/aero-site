@@ -2,6 +2,31 @@
 
 Marketing and legal website for **Aero IPTV**, hosted at **aeroplay.tv**.
 
+## Content source of truth
+
+This folder is the **implementation**, not the source of truth. The website's copy,
+structure, sitemap, and positioning are owned by the Aero wiki:
+
+> **[rymanov/aero-wiki](https://github.com/rymanov/aero-wiki) → `directions/website-v1.md`**
+
+Author content changes in the wiki first, then implement them here. If the two disagree,
+the wiki wins and the HTML is the bug to fix. (The wiki is internal — do not link to it
+from the live pages.)
+
+### Drift check
+
+`scripts/check-content-sync.py` guards the legal/support pages against drifting from the
+wiki. It verifies every canonical claim in `concepts/privacy-policy.md` and
+`concepts/support-page.md` is still present in the matching HTML, and fails otherwise.
+
+```bash
+python3 site/scripts/check-content-sync.py
+# expects ../aero-wiki; override with AERO_WIKI_DIR=/path/to/aero-wiki
+```
+
+Run it before deploying (and ideally in CI). It's directional — it confirms the wiki's
+text is present in the HTML; it does not police copy the HTML adds beyond the wiki.
+
 ## File layout
 
 ```
