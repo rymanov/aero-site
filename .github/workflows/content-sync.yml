@@ -1,0 +1,35 @@
+name: Content sync
+
+# Verify the legal/support pages still match their source of truth in the
+# Aero wiki (rymanov/aero-wiki). See site/scripts/check-content-sync.py.
+#
+# Runs on changes to this repo, weekly (to catch wiki-only edits — the two are
+# separate repos, so a wiki change does not otherwise trigger this), and on demand.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 9 * * 1"   # Mondays 09:00 UTC
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout site
+        uses: actions/checkout@v4
+
+      - name: Checkout wiki (source of truth)
+        uses: actions/checkout@v4
+        with:
+          repository: rymanov/aero-wiki
+          path: aero-wiki
+          # Default token works if aero-wiki is public. If it is private, add a
+          # repo-scoped PAT as the WIKI_REPO_TOKEN secret.
+          token: ${{ secrets.WIKI_REPO_TOKEN || github.token }}
+
+      - name: Check content sync
+        run: python3 site/scripts/check-content-sync.py
