@@ -1,23 +1,33 @@
 #!/usr/bin/env python3
 """
-check-content-sync.py — guard the website's legal/support pages against drifting
-from their source of truth in the Aero wiki.
+check-content-sync.py — guard the website's content against drifting from its
+source of truth in the Aero wiki.
 
 The wiki (github.com/rymanov/aero-wiki) owns the canonical text:
-  concepts/privacy-policy.md  →  site/privacy.html
-  concepts/support-page.md    →  site/support.html
+  concepts/privacy-policy.md  →  site/privacy.html   (section: Canonical content)
+  concepts/support-page.md    →  site/support.html   (section: Canonical content)
+  directions/website-v1.md    →  site/index.html     (section: Anchor claims (CI-enforced))
 
-This script verifies that every canonical claim from each wiki page is still
+This script verifies that every claim listed in the named wiki section is still
 present (word-for-word, ignoring punctuation/case/formatting) in the rendered
 <main> of the matching HTML file. It is directional: the wiki is authoritative,
 so each wiki claim MUST appear in the HTML. The HTML may carry extra chrome
 (page title, "last updated" line, nav) that the wiki page does not.
 
+Two enforcement granularities, by design:
+  • Privacy + support are legal/verbatim text → the wiki's full "Canonical
+    content" section is enforced (every line).
+  • The landing page is marketing copy that changes often → only the curated
+    "Anchor claims (CI-enforced)" subset is enforced: the load-bearing strings
+    (headlines, feature names, and the neutral-player compliance sentences). Copy
+    polish elsewhere on index.html will not trip the check; changing an anchor
+    string will, forcing a matching wiki edit.
+
 Scope/limits: this catches the realistic drift — someone edits the HTML copy and
 it falls out of sync with the wiki. It does NOT police text the HTML *adds*
-beyond the wiki, and it compares normalized words, not raw bytes (HTML markup and
-markdown formatting differ by design). For a stricter legal diff, read both side
-by side. Exits non-zero on any missing claim.
+beyond the enforced claims, and it compares normalized words, not raw bytes (HTML
+markup and markdown formatting differ by design). For a stricter legal diff, read
+both side by side. Exits non-zero on any missing claim.
 
 Usage:
     python3 site/scripts/check-content-sync.py
@@ -35,10 +45,11 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 SITE_DIR = REPO_ROOT / "site"
 WIKI_DIR = Path(os.environ.get("AERO_WIKI_DIR", REPO_ROOT / "aero-wiki"))
 
-# (human label, html file, wiki page)
+# (human label, html file, wiki page, wiki section heading to enforce)
 PAIRS = [
-    ("Privacy policy", SITE_DIR / "privacy.html", WIKI_DIR / "concepts" / "privacy-policy.md"),
-    ("Support page",   SITE_DIR / "support.html", WIKI_DIR / "concepts" / "support-page.md"),
+    ("Privacy policy", SITE_DIR / "privacy.html", WIKI_DIR / "concepts" / "privacy-policy.md",   "Canonical content"),
+    ("Support page",   SITE_DIR / "support.html", WIKI_DIR / "concepts" / "support-page.md",     "Canonical content"),
+    ("Landing page",   SITE_DIR / "index.html",   WIKI_DIR / "directions" / "website-v1.md",     "Anchor claims (CI-enforced)"),
 ]
 
 # claims with fewer than this many words are skipped (headings / labels)
@@ -60,33 +71,36 @@ def html_main_text(path: Path) -> str:
     return normalize(html_mod.unescape(body))
 
 
-def wiki_claims(path: Path) -> list[str]:
+def wiki_claims(path: Path, section: str) -> list[str]:
     """
-    Normalized claim blocks from the '## Canonical content' section.
-    One block per non-empty, non-heading line.
+    Normalized claim blocks from the named '## <section>' heading, up to the next
+    '## ' heading or end of file. One block per non-empty, non-heading line
+    (lines starting with '#' — including '###' sub-headings — are skipped).
     """
     text = path.read_text(encoding="utf-8")
-    m = re.search(r"^##\s+Canonical content\s*$(.*)", text, re.M | re.S)
+    pattern = rf"^##\s+{re.escape(section)}\s*$(.*?)(?=^##\s|\Z)"
+    m = re.search(pattern, text, re.M | re.S)
     if not m:
-        raise SystemExit(f"ERROR: no '## Canonical content' section in {path}")
+        raise SystemExit(f"ERROR: no '## {section}' section in {path}")
     claims = []
     for line in m.group(1).splitlines():
         line = line.strip()
         if not line or line.startswith("#"):     # skip blanks and sub-headings
             continue
-        norm = normalize(line)
+        display = re.sub(r"^[-*]\s+", "", line)  # strip a leading list marker for readable output
+        norm = normalize(display)
         if len(norm.split()) >= MIN_WORDS:
-            claims.append((line, norm))
+            claims.append((display, norm))
     return claims
 
 
-def check_pair(label: str, html_path: Path, wiki_path: Path) -> list[str]:
+def check_pair(label: str, html_path: Path, wiki_path: Path, section: str) -> list[str]:
     for p in (html_path, wiki_path):
         if not p.exists():
             raise SystemExit(f"ERROR: missing file {p}")
     haystack = " " + html_main_text(html_path) + " "
     failures = []
-    for original, norm in wiki_claims(wiki_path):
+    for original, norm in wiki_claims(wiki_path, section):
         if (" " + norm + " ") not in haystack:
             failures.append(original)
     return failures
@@ -99,8 +113,8 @@ def main() -> int:
         return 2
 
     total = 0
-    for label, html_path, wiki_path in PAIRS:
-        failures = check_pair(label, html_path, wiki_path)
+    for label, html_path, wiki_path, section in PAIRS:
+        failures = check_pair(label, html_path, wiki_path, section)
         if failures:
             total += len(failures)
             print(f"✗ {label}: {len(failures)} canonical claim(s) missing from "

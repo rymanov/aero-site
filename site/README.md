@@ -15,17 +15,28 @@ from the live pages.)
 
 ### Drift check
 
-`scripts/check-content-sync.py` guards the legal/support pages against drifting from the
-wiki. It verifies every canonical claim in `concepts/privacy-policy.md` and
-`concepts/support-page.md` is still present in the matching HTML, and fails otherwise.
+`scripts/check-content-sync.py` guards the site against drifting from the wiki, at two
+granularities:
+
+| HTML | Wiki page | Section enforced | Strictness |
+|------|-----------|------------------|------------|
+| `privacy.html` | `concepts/privacy-policy.md` | `## Canonical content` | full text (legal — verbatim) |
+| `support.html` | `concepts/support-page.md` | `## Canonical content` | full text |
+| `index.html` | `directions/website-v1.md` | `## Anchor claims (CI-enforced)` | curated load-bearing strings only |
+
+The landing page is deliberately *not* byte-locked — only the curated anchor strings
+(headlines, feature names, and the neutral-player compliance sentences) must match, so
+routine marketing-copy polish doesn't trip CI. Privacy/support are legal text and enforce
+in full.
 
 ```bash
 python3 site/scripts/check-content-sync.py
 # expects ../aero-wiki; override with AERO_WIKI_DIR=/path/to/aero-wiki
 ```
 
-Run it before deploying (and ideally in CI). It's directional — it confirms the wiki's
-text is present in the HTML; it does not police copy the HTML adds beyond the wiki.
+Run it before deploying (it also runs in CI). It's directional — it confirms the wiki's
+text is present in the HTML; it does not police copy the HTML adds beyond the enforced
+claims.
 
 ## File layout
 
