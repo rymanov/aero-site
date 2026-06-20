@@ -25,6 +25,9 @@
   --accent-h:     #16c6da;
   --accent-deep:  #0a8294;
   --accent-soft:  rgba(15,181,201,.12);
+  /* Text-on-light accents — meet WCAG AA on white and on the soft pills */
+  --accent-ink:   #076b7c;
+  --warm-ink:     #9e3f18;
 
   /* Secondary — warm breast orange */
   --warm:         #ff7a3c;
@@ -59,6 +62,9 @@
     --text-muted:      #8b969b;
     --border:          rgba(255,255,255,.1);
     --border-nav:      rgba(255,255,255,.12);
+    /* On dark surfaces the bright teal/warm read fine */
+    --accent-ink:      #16c6da;
+    --warm-ink:        #ff9968;
   }
 }
 
@@ -147,7 +153,7 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-dark .nav-links a { color: rgba(245,245,247,.68); }
 .nav-links a:hover { color: var(--text); text-decoration: none; }
 .nav-dark .nav-links a:hover { color: #f5f5f7; }
-.nav-links a[aria-current="page"] { color: var(--accent); }
+.nav-links a[aria-current="page"] { color: var(--accent-ink); }
 
 /* ============================================================
    FOOTER
@@ -295,6 +301,8 @@ img { max-width: 100%; height: auto; display: block; }
 .badge-link:hover { transform: translateY(-2px); }
 .badge-link:focus-visible { border-radius: 14px; }
 .badge-link svg { display: block; }
+/* Pre-launch: badge is shown as a preview, not yet a live link */
+.badge-link.is-soon { pointer-events: none; opacity: .82; }
 
 /* Hero screenshot — floats forward with depth and a colored glow bleed */
 .hero-screenshot {
@@ -334,7 +342,7 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-ink);
   margin-bottom: 18px;
 }
 
@@ -381,12 +389,8 @@ img { max-width: 100%; height: auto; display: block; }
   border-radius: 999px;
   margin-bottom: 18px;
 }
-.kicker-teal { color: var(--accent-deep); background: var(--accent-soft); }
-.kicker-warm { color: #c0531f; background: var(--warm-soft); }
-@media (prefers-color-scheme: dark) {
-  .kicker-teal { color: var(--accent-h); }
-  .kicker-warm { color: #ff9968; }
-}
+.kicker-teal { color: var(--accent-ink); background: var(--accent-soft); }
+.kicker-warm { color: var(--warm-ink); background: var(--warm-soft); }
 
 .showcase-copy h3 {
   font-size: clamp(1.75rem, 3.6vw, 2.75rem);
@@ -664,13 +668,12 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 8px;
   font-size: .8125rem;
   font-weight: 600;
-  color: var(--accent-deep);
+  color: var(--accent-ink);
   background: var(--accent-soft);
   border-radius: 999px;
   padding: 7px 15px;
   margin-bottom: 24px;
 }
-@media (prefers-color-scheme: dark) { .byop-badge { color: var(--accent-h); } }
 .byop-badge svg { width: 17px; height: 17px; }
 .section-byop h2 {
   font-size: clamp(1.9rem, 4vw, 2.75rem);
