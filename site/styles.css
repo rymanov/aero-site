@@ -305,7 +305,8 @@ img { max-width: 100%; height: auto; display: block; }
   letter-spacing: -.022em;
   line-height: 1.5;
   color: var(--text-hero-muted);
-  max-width: 600px;
+  max-width: 820px;
+  text-wrap: balance;
   margin: 0 auto 2.25rem;
 }
 
