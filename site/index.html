@@ -142,40 +142,34 @@
         <div class="showcase-copy reveal">
           <span class="showcase-kicker kicker-teal">Programme guide</span>
           <h3>A guide that<br>earns its name.</h3>
-          <p>Point Aero at your XMLTV source and every channel shows now &amp; next, a live progress bar, and a full scrollable guide — right where you're watching.</p>
+          <p>Point Aero at your XMLTV source for a full schedule on every channel — the live show highlighted, what's ahead in view, and catch-up a tap away.</p>
         </div>
         <div class="showcase-visual reveal reveal-delay">
-          <div class="mini-panel">
-            <div class="mini-panel-head">
-              <span>Now &amp; Next</span>
-              <span class="mini-pill">Today</span>
+          <div class="mini-panel guide-panel">
+            <div class="guide-head">
+              <img class="guide-logo" src="assets/natgeo-logo.svg" alt="" width="40" height="40">
+              <span class="guide-title">National Geographic HD</span>
+              <span class="guide-x" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+              </span>
             </div>
-            <div class="epg-row">
-              <span class="epg-dot" style="background:#1a7a28"></span>
-              <div class="epg-meta">
-                <div class="epg-name">National Geographic HD</div>
-                <div class="epg-now">Planet Earth IV</div>
-                <div class="epg-bar"><span style="width:62%"></span></div>
-              </div>
-              <div class="epg-next">21:00<br><em>Wonders</em></div>
+            <div class="guide-days">
+              <span class="guide-day on">Today</span>
+              <span class="guide-day">Yesterday</span>
+              <span class="guide-day">Thu 18</span>
+              <span class="guide-day">Wed 17</span>
+              <span class="guide-day">Tue 16</span>
             </div>
-            <div class="epg-row">
-              <span class="epg-dot" style="background:#c8102e"></span>
-              <div class="epg-meta">
-                <div class="epg-name">BBC News</div>
-                <div class="epg-now">The World Tonight</div>
-                <div class="epg-bar"><span style="width:38%"></span></div>
+            <div class="guide-rows">
+              <div class="guide-row past"><span class="gr-time">19:00</span><span class="gr-title">Africa's Hidden Wild</span></div>
+              <div class="guide-row past"><span class="gr-time">20:00</span><span class="gr-title">Wild Patagonia</span></div>
+              <div class="guide-row live">
+                <span class="gr-time">21:00</span>
+                <span class="gr-body"><span class="gr-title">Planet Earth IV</span><span class="gr-live">LIVE</span></span>
+                <span class="gr-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="8,6 8,18 18,12"/></svg></span>
               </div>
-              <div class="epg-next">21:30<br><em>HARDtalk</em></div>
-            </div>
-            <div class="epg-row">
-              <span class="epg-dot" style="background:#003087"></span>
-              <div class="epg-meta">
-                <div class="epg-name">Sky Sports Main Event</div>
-                <div class="epg-now">Premier League Live</div>
-                <div class="epg-bar"><span style="width:80%"></span></div>
-              </div>
-              <div class="epg-next">22:00<br><em>Highlights</em></div>
+              <div class="guide-row future"><span class="gr-time">22:00</span><span class="gr-title">Nature's Wonders</span></div>
+              <div class="guide-row future"><span class="gr-time">23:00</span><span class="gr-title">Hostile Planet</span></div>
             </div>
           </div>
         </div>
@@ -191,35 +185,56 @@
           <p>The channel list slides over the still-playing video — search, filter by group, jump to favourites. Audio never cuts, so returning is instant.</p>
         </div>
         <div class="showcase-visual reveal reveal-delay">
-          <div class="mini-panel mini-list">
-            <div class="list-search">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
-              <span>Search channels…</span>
+          <div class="mini-panel browse-panel">
+            <div class="browse-rail">
+              <div class="rail-title">Aero</div>
+              <div class="rail-btn on"><span>All channels</span><span class="rail-count">247</span></div>
+              <div class="rail-btn"><span>★ Favorites</span><span class="rail-count">12</span></div>
+              <div class="rail-btn"><span>News</span><span class="rail-count">18</span></div>
+              <div class="rail-btn"><span>Sport</span><span class="rail-count">24</span></div>
+              <div class="rail-btn"><span>Movies</span><span class="rail-count">52</span></div>
             </div>
-            <div class="list-pills">
-              <span class="list-pill on">All</span>
-              <span class="list-pill">News</span>
-              <span class="list-pill">Sport</span>
-              <span class="list-pill">Movies</span>
-            </div>
-            <div class="list-group">News</div>
-            <div class="list-row active">
-              <span class="list-logo" style="background:#1a7a28"></span>
-              <span class="list-name">National Geographic HD</span>
-              <span class="list-bars"><i></i><i></i><i></i></span>
-            </div>
-            <div class="list-row">
-              <span class="list-logo" style="background:#c8102e"></span>
-              <span class="list-name">BBC News</span>
-            </div>
-            <div class="list-row">
-              <span class="list-logo" style="background:#e8272a"></span>
-              <span class="list-name">Sky News</span>
-            </div>
-            <div class="list-group">Sport</div>
-            <div class="list-row">
-              <span class="list-logo" style="background:#003087"></span>
-              <span class="list-name">Sky Sports Main Event</span>
+            <div class="browse-list">
+              <div class="browse-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+                <span>Search channels</span>
+              </div>
+              <div class="browse-row marked">
+                <span class="brow-bar"></span>
+                <span class="brow-logo"><img src="assets/natgeo-logo.svg" alt="" width="36" height="36"></span>
+                <span class="brow-meta">
+                  <span class="brow-name">National Geographic HD</span>
+                  <span class="brow-now">Planet Earth IV</span>
+                </span>
+                <span class="brow-star on" aria-hidden="true">★</span>
+              </div>
+              <div class="browse-row">
+                <span class="brow-bar"></span>
+                <span class="brow-logo"><img src="assets/bbc-logo.svg" alt="" width="36" height="36"></span>
+                <span class="brow-meta">
+                  <span class="brow-name">BBC News</span>
+                  <span class="brow-now">The World Tonight</span>
+                </span>
+                <span class="brow-star" aria-hidden="true">☆</span>
+              </div>
+              <div class="browse-row">
+                <span class="brow-bar"></span>
+                <span class="brow-logo"><img src="assets/sky-sports-logo.svg" alt="" width="36" height="36"></span>
+                <span class="brow-meta">
+                  <span class="brow-name">Sky Sports Main Event</span>
+                  <span class="brow-now">Premier League Live</span>
+                </span>
+                <span class="brow-star on" aria-hidden="true">★</span>
+              </div>
+              <div class="browse-row">
+                <span class="brow-bar"></span>
+                <span class="brow-logo"><img src="assets/sky-news-logo.svg" alt="" width="36" height="36"></span>
+                <span class="brow-meta">
+                  <span class="brow-name">Sky News</span>
+                  <span class="brow-now">Breaking News</span>
+                </span>
+                <span class="brow-star" aria-hidden="true">☆</span>
+              </div>
             </div>
           </div>
         </div>
