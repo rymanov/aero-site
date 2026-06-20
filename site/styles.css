@@ -319,7 +319,7 @@ img { max-width: 100%; height: auto; display: block; }
 .badge-link:focus-visible { border-radius: 14px; }
 .badge-link svg { display: block; }
 /* Pre-launch: badge is shown as a preview, not yet a live link */
-.badge-link.is-soon { pointer-events: none; opacity: .82; }
+.badge-link.is-soon { pointer-events: none; opacity: .62; }
 
 /* Hero screenshot — floats forward with depth and a colored glow bleed */
 .hero-screenshot {
