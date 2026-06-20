@@ -241,7 +241,7 @@ img { max-width: 100%; height: auto; display: block; }
   position: relative;
   background: var(--bg-hero);
   text-align: center;
-  padding: 92px 22px 0;
+  padding: 52px 22px 0;
   overflow: hidden;
   isolation: isolate;
 }

@@ -1,7 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Simple "A" lettermark in a rounded square -->
-  <rect width="32" height="32" rx="8" fill="#0071e3"/>
-  <text x="16" y="23" text-anchor="middle"
-        font-family="-apple-system, BlinkMacSystemFont, sans-serif"
-        font-size="20" font-weight="700" fill="#ffffff">A</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Aero mark — play triangle, matching the app icon, in the site teal palette -->
+  <defs>
+    <radialGradient id="tile" cx="50%" cy="36%" r="78%">
+      <stop offset="0%" stop-color="#15282e"/>
+      <stop offset="100%" stop-color="#070d10"/>
+    </radialGradient>
+    <linearGradient id="tri" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22cfe2"/>
+      <stop offset="100%" stop-color="#0b93a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="22" fill="url(#tile)"/>
+  <!-- soft glow behind the triangle -->
+  <polygon points="36,24 36,76 80,50" fill="#0fb5c9" opacity="0.28"/>
+  <!-- the mark -->
+  <polygon points="39,29 39,71 75,50" fill="url(#tri)" stroke="#2bd6e8" stroke-width="1.5" stroke-linejoin="round"/>
 </svg>
