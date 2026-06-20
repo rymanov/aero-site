@@ -882,6 +882,7 @@ img { max-width: 100%; height: auto; display: block; }
 .ctrl-back { width: 28px; }
 .ctrl-back svg { width: 21px; height: 21px; }
 .ctrl-dim { color: rgba(255,255,255,.28); }
+.ctrl-fav { color: #ffcf3f; }
 
 /* Bottom controls — single centered floating pill */
 .player-controls {
