@@ -98,6 +98,23 @@ a:focus-visible {
 
 img { max-width: 100%; height: auto; display: block; }
 
+/* Skip link — hidden until focused (keyboard users) */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  transform: translate(-50%, -130%);
+  z-index: 200;
+  background: var(--accent);
+  color: #fff;
+  font-size: .875rem;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 10px;
+  transition: transform .2s ease;
+}
+.skip-link:focus { transform: translate(-50%, 0); text-decoration: none; outline: none; }
+
 /* ============================================================
    NAV — sticky, frosted glass Apple style
    ============================================================ */
@@ -175,9 +192,9 @@ img { max-width: 100%; height: auto; display: block; }
   flex-wrap: wrap;
   gap: 8px 20px;
 }
-.site-footer a { color: var(--text-muted); }
+.site-footer a { color: var(--text-muted); display: inline-block; padding: 6px 0; }
 .site-footer a:hover { color: var(--text); text-decoration: none; }
-.footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+.footer-links { display: flex; gap: 8px 16px; flex-wrap: wrap; }
 
 /* ============================================================
    PROSE PAGES (privacy, support)
@@ -725,6 +742,28 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: 2rem;
 }
 .section-cta .badge-link { margin-bottom: 0; }
+
+/* 404 page */
+.error-page { min-height: 70vh; display: flex; align-items: center; }
+.error-code {
+  display: inline-block;
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--accent-h);
+  background: var(--accent-soft);
+  border: 1px solid rgba(15,181,201,.22);
+  border-radius: 999px;
+  padding: 6px 14px;
+  margin-bottom: 1.2em;
+}
+.error-back {
+  display: inline-block;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--accent-h);
+  padding: 8px 0;
+}
 
 /* ---------- Player frame (hero screenshot) ---------- */
 .player-frame {

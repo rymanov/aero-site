@@ -28,8 +28,28 @@
   <link rel="canonical" href="https://aeroplay.tv/">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Aero IPTV",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "macOS",
+    "description": "A fast, native macOS media player for M3U/M3U8 playlists and XMLTV guide data you already own. No content included — bring your own playlist.",
+    "url": "https://aeroplay.tv/",
+    "image": "https://aeroplay.tv/assets/og-image.jpg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ── Navigation — dark over black hero ── -->
   <header class="site-nav-bar nav-dark">
@@ -42,7 +62,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main">
 
     <!-- ── Hero ── -->
     <section class="hero">
@@ -324,30 +344,7 @@
     </div>
   </footer>
 
-  <script>
-    // Tasteful scroll reveal + hero entrance. No dependencies, no requests.
-    (function () {
-      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      document.documentElement.classList.add('js');
-
-      // Hero settles in once painted.
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () { document.body.classList.add('hero-loaded'); });
-      });
-
-      var items = [].slice.call(document.querySelectorAll('.reveal'));
-      if (reduce || !('IntersectionObserver' in window)) {
-        items.forEach(function (el) { el.classList.add('in'); });
-        return;
-      }
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-        });
-      }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
-      items.forEach(function (el) { io.observe(el); });
-    })();
-  </script>
+  <script src="assets/app.js" defer></script>
 
 </body>
 </html>
