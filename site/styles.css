@@ -315,6 +315,36 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: 72px;
   transition: transform .25s ease;
 }
+.hero .badge-link { margin-bottom: 22px; }
+
+/* Trust strip — the USP, scannable */
+.trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto 60px;
+}
+.trust-strip li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: .8125rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  color: var(--text-hero-muted);
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 999px;
+  padding: 6px 14px 6px 11px;
+}
+.trust-strip li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-h);
+}
 .badge-link:hover { transform: translateY(-2px); }
 .badge-link:focus-visible { border-radius: 14px; }
 .badge-link svg { display: block; }
@@ -742,6 +772,11 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: 2rem;
 }
 .section-cta .badge-link { margin-bottom: 0; }
+.cta-trust {
+  margin-top: 1.5rem;
+  font-size: .9375rem !important;
+  color: var(--text-hero-muted) !important;
+}
 
 /* 404 page */
 .error-page { min-height: 70vh; display: flex; align-items: center; }
