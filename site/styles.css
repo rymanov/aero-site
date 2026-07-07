@@ -1032,3 +1032,14 @@ img { max-width: 100%; height: auto; display: block; }
   .ctrl-play { width: 38px !important; height: 38px !important; }
   .ctrl-play svg { width: 20px !important; height: 20px !important; }
 }
+
+/* ── Hero launch price (v1.1, 2026-07-07) ── */
+.hero-price {
+  margin-top: 1.5rem;
+  font-size: 1.375rem;
+  color: var(--text-hero);
+}
+.hero-price strong {
+  color: var(--accent-h);
+  font-weight: 600;
+}
