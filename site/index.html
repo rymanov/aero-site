@@ -9,21 +9,23 @@
   -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aero IPTV — A native Mac player for your playlists</title>
-  <meta name="description" content="Aero is a fast, native macOS media player for M3U/M3U8 playlists and XMLTV guide data you already own. No content included — bring your own playlist.">
+  <title>Aero IPTV: A native Mac player for your playlists</title>
+  <meta name="description" content="Aero is a fast, native macOS media player for M3U/M3U8 playlists and XMLTV guide data you already own. No content included. Bring your own playlist.">
 
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://aeroplay.tv/">
-  <meta property="og:title"       content="Aero IPTV — A native Mac player for your playlists">
+  <meta property="og:title"       content="Aero IPTV: A native Mac player for your playlists">
   <meta property="og:description" content="Fast, native macOS media player for M3U/M3U8 playlists and XMLTV guide data you already own. No content included.">
   <meta property="og:image"       content="https://aeroplay.tv/assets/og-image.jpg">
   <meta property="og:image:width"  content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"    content="Aero IPTV: a native Mac player for M3U/M3U8 playlists and XMLTV guide data.">
 
   <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="Aero IPTV — A native Mac player for your playlists">
+  <meta name="twitter:title"       content="Aero IPTV: A native Mac player for your playlists">
   <meta name="twitter:description" content="Fast, native macOS media player for M3U/M3U8 playlists and XMLTV guide data you already own.">
   <meta name="twitter:image"       content="https://aeroplay.tv/assets/og-image.jpg">
+  <meta name="twitter:image:alt"   content="Aero IPTV: a native Mac player for M3U/M3U8 playlists and XMLTV guide data.">
 
   <link rel="canonical" href="https://aeroplay.tv/">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -36,12 +38,12 @@
     "name": "Aero IPTV",
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "macOS",
-    "description": "A fast, native macOS media player for M3U/M3U8 playlists and XMLTV guide data you already own. No content included — bring your own playlist.",
+    "description": "A fast, native macOS media player for M3U/M3U8 playlists and XMLTV guide data you already own. No content included. Bring your own playlist.",
     "url": "https://aeroplay.tv/",
     "image": "https://aeroplay.tv/assets/og-image.jpg",
     "offers": {
       "@type": "Offer",
-      "price": "0",
+      "price": "19.99",
       "priceCurrency": "USD"
     }
   }
@@ -67,12 +69,11 @@
     <!-- ── Hero ── -->
     <section class="hero">
       <div class="hero-inner">
-        <span class="eyebrow">Coming to the Mac App Store near you</span>
+        <span class="eyebrow">Coming to the Mac App Store</span>
         <h1>Your playlists.<br>Yours alone.</h1>
         <p class="tagline">
-          A fast, native Mac player for the M3U playlists and XMLTV guide you
-          already own. Built for Apple — one purchase, your Mac today and Apple TV
-          when it lands. No content, no account, no cloud — nothing leaves your Mac.
+          No content, no account, no cloud.<br>
+          Native player for your Mac.
         </p>
 
         <a class="badge-link is-soon" href="#" aria-disabled="true" tabindex="-1" aria-label="Aero IPTV is coming soon to the Mac App Store">
@@ -84,7 +85,7 @@
           >
         </a>
 
-        <p class="hero-price">One-time <strong>$19.99 at launch</strong> — pay once, no subscription, ever.</p>
+        <p class="hero-price">One-time <strong>$19.99</strong><span class="hero-price-fine">No subscription, no ads, ever.</span></p>
 
         <div class="hero-screenshot">
           <div class="player-frame">
@@ -97,7 +98,7 @@
               fetchpriority="high"
             >
             <!-- Top bar -->
-            <div class="player-top">
+            <div class="player-top" aria-hidden="true">
               <div class="player-head">
                 <span class="ctrl-glyph ctrl-back" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 5 8 12 15 19"/></svg>
@@ -126,7 +127,7 @@
               </div>
             </div>
             <!-- Bottom controls — single floating pill -->
-            <div class="player-controls">
+            <div class="player-controls" aria-hidden="true">
               <div class="player-pill">
                 <div class="player-progress-row">
                   <span class="player-time-label">21:00</span>
@@ -170,11 +171,11 @@
       <div class="showcase-inner">
         <div class="showcase-copy reveal">
           <span class="showcase-kicker kicker-teal">Programme guide</span>
-          <h3>A guide that<br>earns its name.</h3>
-          <p>Point Aero at your XMLTV source for a full schedule on every channel — the live show highlighted, what's ahead in view, and catch-up a tap away.</p>
+          <h3>A guide<br>that matters.</h3>
+          <p>The full schedule at a glance, last night's episode a tap away.</p>
         </div>
         <div class="showcase-visual reveal reveal-delay">
-          <div class="mini-panel guide-panel">
+          <div class="mini-panel guide-panel" aria-hidden="true">
             <div class="guide-head">
               <img class="guide-logo" src="assets/demo-teal.svg" alt="" width="40" height="40">
               <span class="guide-title">Halcyon</span>
@@ -210,11 +211,11 @@
       <div class="showcase-inner showcase-reverse">
         <div class="showcase-copy reveal">
           <span class="showcase-kicker kicker-warm">Channel browser</span>
-          <h3>Browse without<br>missing a beat.</h3>
-          <p>The channel list slides over the still-playing video — search, filter by group, jump to favourites, or shuffle to a random channel. Audio never cuts, so returning is instant.</p>
+          <h3>Browse<br>without limits.</h3>
+          <p>Slide through your channels. Search, favourite, or shuffle. Never miss a beat.</p>
         </div>
         <div class="showcase-visual reveal reveal-delay">
-          <div class="mini-panel browse-panel">
+          <div class="mini-panel browse-panel" aria-hidden="true">
             <div class="browse-rail">
               <div class="rail-title">Aero</div>
               <div class="rail-btn on"><span>All channels</span><span class="rail-count">12</span></div>
@@ -279,24 +280,24 @@
             <span class="icon-tile">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><polygon points="10,8.5 10,12.5 14,10.5" fill="currentColor" stroke="none"/></svg>
             </span>
-            <h4>One UI, every screen</h4>
-            <p>From a MacBook on your desk to a Mac wired to the TV, and Apple TV to come — one native interface, no mode-switching. Buy once — a Universal Purchase covers your Mac today and Apple TV when it ships.</p>
+            <h3>Open and relax.</h3>
+            <p>No ads, no clutter. Your channels, nothing in the way.</p>
           </article>
 
           <article class="feature-card reveal reveal-delay">
             <span class="icon-tile">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="10,8 10,16 16,12" fill="currentColor" stroke="none"/></svg>
             </span>
-            <h4>Broad format support</h4>
-            <p>VLC's engine under the hood — HLS, MPEG-TS, and the codecs in your playlist, handled without fuss.</p>
+            <h3>Picture perfect.</h3>
+            <p>Colour, motion, sound. The app disappears, you stay.</p>
           </article>
 
           <article class="feature-card reveal reveal-delay-2">
             <span class="icon-tile">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.45 6 .9-4.35 4.25 1.05 6L12 16.9 6.6 19.6l1.05-6L3.3 9.35l6-.9z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
             </span>
-            <h4>Gets out of your way</h4>
-            <p>Favourites, search, fast launch and resume-last-channel — watching starts the moment you open it.</p>
+            <h3>Nobody's watching.</h3>
+            <p>No account, no analytics, no one. Watched on Mac stays on Mac.</p>
           </article>
 
         </div>
@@ -308,16 +309,12 @@
       <div class="section-inner reveal">
         <span class="byop-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15l-3 3M15 9l3-3"/><path d="M7.5 10l-2.3 2.3a3.7 3.7 0 0 0 5.2 5.2l2.3-2.3M16.5 14l2.3-2.3a3.7 3.7 0 0 0-5.2-5.2L11.3 8.8"/></svg>
-          Only a player
+          Bring your playlists
         </span>
-        <h2>Only a player.<br>Nothing else.</h2>
+        <h2>Pure player.<br>Nothing else.</h2>
         <p>
-          Aero ships empty — no channels, no streams, no content of any kind. Add the
-          M3U or M3U8 playlist you already use, by URL or local file.
-        </p>
-        <p>
-          And nothing about you is collected, stored, or sent. Aero makes no external
-          requests, needs no account, and has no idea what you watch — verifiably.
+          Aero ships empty. No channels, no streams, no content of any kind.
+          Bring your playlist by URL, file, or Xtream login.
         </p>
         <p class="byop-fine">
           Aero has no affiliation with any service. You are responsible for ensuring the
@@ -329,12 +326,11 @@
     <!-- ── Closing CTA ── -->
     <section class="section-cta">
       <div class="cta-inner reveal">
-        <h2>Your playlists,<br>at their best.</h2>
-        <p>A fast, native Mac player for everything you already own.</p>
+        <h2>Your playlists,<br>your player.</h2>
         <a class="badge-link is-soon" href="#" aria-disabled="true" tabindex="-1" aria-label="Aero IPTV is coming soon to the Mac App Store">
           <img src="assets/badge-mac-app-store.svg" alt="Download on the Mac App Store" width="200" height="51">
         </a>
-        <p class="cta-trust">Native, private, and yours. No subscription to us, ever.</p>
+        <p class="cta-trust">Yours to keep. Private by default.</p>
       </div>
     </section>
 
