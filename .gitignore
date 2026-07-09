@@ -1,0 +1,27 @@
+# aero-site repo ignores
+# The tracked content of this repo is the website under site/ (plus .github/).
+# Everything below either belongs to another repo, is a local build cache, or is
+# a working/scratch doc that should not be committed here.
+
+# --- Nested repo: the Aero wiki is its own repository (rymanov/aero-wiki),
+#     the SSOT for product/eng/store/site/brand. It lives inside this working
+#     tree for convenience but must NOT be added to aero-site. ---
+aero-wiki/
+
+# --- App source stub: the real Aero app source lives only on the Mac Mini
+#     (~/dev/aero). This Aero/ folder is a partial, non-authoritative stub —
+#     editing it here does nothing. Do not track it. ---
+Aero/
+
+# --- Local scratch / handoff / design / prompt docs kept at the repo root.
+#     These are working notes, not shippable site content. Root-level markdown
+#     only — site/**/*.md and aero-wiki/**/*.md are unaffected. If you ever want
+#     a tracked root doc (e.g. a real README.md), add it with `git add -f`. ---
+/*.md
+
+# --- Build caches / editor / OS junk ---
+.wrangler/
+.obsidian/
+.claude/settings.local.json
+.DS_Store
+**/.DS_Store
