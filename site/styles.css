@@ -49,7 +49,10 @@
   --max-w:      980px;
   --prose-w:    720px;
   --nav-h:      52px;
-  --section-v:  88px;
+  /* Section rhythm — both fluid so every section scales by the same mechanism.
+     --section-v = major breaks; --section-v-sm = the tighter feature/showcase block. */
+  --section-v:    clamp(56px, 7vw, 88px);
+  --section-v-sm: clamp(40px, 5vw, 56px);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -388,7 +391,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* ---------- Showcase rows ---------- */
 .showcase {
   background: var(--bg-section);
-  padding: clamp(40px, 6vw, 72px) 22px;
+  padding: var(--section-v-sm) 22px;
 }
 .showcase-inner {
   max-width: var(--max-w);
@@ -396,7 +399,7 @@ img { max-width: 100%; height: auto; display: block; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: start;
-  gap: clamp(32px, 6vw, 88px);
+  gap: clamp(32px, 6vw, 72px);
 }
 .showcase-reverse .showcase-copy { order: 2; }
 .showcase-reverse .showcase-visual { order: 1; }
@@ -406,7 +409,7 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: .8125rem;
   font-weight: 600;
   letter-spacing: .01em;
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: 999px;
   margin-bottom: 18px;
 }
@@ -621,7 +624,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* ---------- Compact feature grid ---------- */
 .section-grid {
   background: var(--bg-section);
-  padding: clamp(40px, 6vw, 72px) 22px var(--section-v);
+  padding: var(--section-v-sm) 22px var(--section-v);
 }
 .section-grid .section-inner { max-width: var(--max-w); margin: 0 auto; }
 
@@ -692,7 +695,7 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--accent-ink);
   background: var(--accent-soft);
   border-radius: 999px;
-  padding: 7px 15px;
+  padding: 6px 14px;
   margin-bottom: 24px;
 }
 .byop-badge svg { width: 17px; height: 17px; }
@@ -1013,8 +1016,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 680px) {
-  :root { --section-v: 64px; }
-  .hero { padding: 56px 20px 0; }
+  .hero { padding: 56px 22px 0; }
   .feature-card { border-right: none; border-bottom: 1px solid var(--border); }
   .feature-card:last-child { border-bottom: none; }
 }
