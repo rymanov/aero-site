@@ -1,0 +1,43 @@
+#EXTM3U url-tvg="https://aeroplay.tv/aero-review-demo.xml"
+# Aero - demo playlist for App Review and for the App Store screenshots.
+#
+# The guide URL is declared in the header above, so adding this one playlist URL
+# also brings in the guide - no second step for the reviewer.
+#
+# Aero ships with no content and no bundled playlists. This playlist exists only
+# so an App Review reviewer can exercise the player without supplying their own
+# provider, and so the App Store screenshots can show the app in use without any
+# commercial broadcast channel appearing on screen.
+#
+# Every entry is openly licensed:
+#   - NASA TV        works of the US Government, not subject to copyright in the US.
+#                    These are live channels: they exercise live playback and rewind.
+#   - Blender films  (c) Blender Foundation, Creative Commons Attribution 3.0.
+#                    Served from Blender's own host (and the Internet Archive).
+#   - Apple streams  Apple's public HLS reference/sample streams.
+#
+# Nothing here is a commercial broadcast channel.
+
+#EXTINF:-1 tvg-id="nasa.public" tvg-name="NASA TV Public" group-title="Live",NASA TV Public
+https://ntv1.akamaized.net/hls/live/2014075/NASA-NTV1-HLS/master.m3u8
+
+#EXTINF:-1 tvg-id="nasa.media" tvg-name="NASA TV Media" group-title="Live",NASA TV Media
+https://ntv2.akamaized.net/hls/live/2013923/NASA-NTV2-HLS/master.m3u8
+
+#EXTINF:-1 tvg-id="blender.bbb" tvg-name="Big Buck Bunny" group-title="Films",Big Buck Bunny
+https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_h264.mov
+
+#EXTINF:-1 tvg-id="blender.sintel" tvg-name="Sintel" group-title="Films",Sintel
+https://archive.org/download/Sintel/sintel-2048-surround.mp4
+
+#EXTINF:-1 tvg-id="blender.tos" tvg-name="Tears of Steel" group-title="Films",Tears of Steel
+https://download.blender.org/demo/movies/ToS/tears_of_steel_720p.mov
+
+#EXTINF:-1 tvg-id="blender.ed" tvg-name="Elephants Dream" group-title="Films",Elephants Dream
+https://archive.org/download/ElephantsDream/ed_hd.mp4
+
+#EXTINF:-1 tvg-id="apple.hevc" tvg-name="Apple Reference (HEVC)" group-title="Reference",Apple Reference (HEVC)
+https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_adv_example_hevc/master.m3u8
+
+#EXTINF:-1 tvg-id="apple.fmp4" tvg-name="Apple Reference (fMP4)" group-title="Reference",Apple Reference (fMP4)
+https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8
