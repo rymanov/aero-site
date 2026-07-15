@@ -3,8 +3,8 @@
 Generate aero-review-demo.xml - the XMLTV guide for Aero's App Review demo playlist.
 
 Why this exists: Aero's guide is one of its main features, but the demo playlist's
-sources (NASA, Blender, Apple) publish no schedule, so the guide would render empty
-for an App Review reviewer and could not be shown in the App Store screenshots.
+sources publish no schedule, so the guide would render empty for an App Review
+reviewer and could not be shown in the App Store screenshots.
 
 This is DEMO DATA, and says so in the file. It describes only openly licensed
 content and makes no claim about any third party's real schedule.
@@ -32,10 +32,9 @@ START = dt.datetime(2026, 7, 1, 0, 0)   # pinned so regeneration is deterministi
 # title/desc per channel. Films carry their real titles and credits; the live and
 # reference channels get plainly-worded blocks that assert nothing untrue.
 CHANNELS = [
-    ("nasa.public",   "NASA TV Public", "NASA TV Live",
-     "Live programming from NASA. A work of the US Government, not subject to copyright in the United States."),
-    ("nasa.media",    "NASA TV Media", "NASA TV Media Channel",
-     "Live media-channel programming from NASA. A work of the US Government, not subject to copyright in the United States."),
+    ("live.testcard", "Live Test Card", "Live Test Card",
+     "A continuous live test card: colour bars with an on-screen clock. Generated, not filmed - "
+     "there is no underlying work and nothing to license. Exercises live playback and rewind."),
     ("blender.bbb",   "Big Buck Bunny", "Big Buck Bunny",
      "(c) Blender Foundation. Licensed under Creative Commons Attribution 3.0."),
     ("blender.sintel", "Sintel", "Sintel",
@@ -77,9 +76,9 @@ def build():
            '  Aero - demo guide for App Review and App Store screenshots.',
            '  DEMO DATA. Aero ships with no content and no guide; this exists only so the',
            '  guide can be exercised with the demo playlist, whose sources publish no',
-           '  schedule. It describes openly licensed content only (NASA: US Government',
-           '  work; Blender films: CC-BY; Apple: public reference streams) and makes no',
-           '  claim about any third party\'s real schedule.',
+           '  schedule. It describes openly licensed or generated content only (live test',
+           '  card: synthetic; Blender films: CC-BY; Apple: public reference streams) and',
+           '  makes no claim about any third party\'s real schedule.',
            f'  Covers {START:%Y-%m-%d} to {end:%Y-%m-%d}. Regenerate with scripts/build-review-epg.py.',
            '-->',
            '<tv generator-info-name="aero-review-demo">']

@@ -9,20 +9,28 @@
 # provider, and so the App Store screenshots can show the app in use without any
 # commercial broadcast channel appearing on screen.
 #
-# Every entry is openly licensed:
-#   - NASA TV        works of the US Government, not subject to copyright in the US.
-#                    These are live channels: they exercise live playback and rewind.
-#   - Blender films  (c) Blender Foundation, Creative Commons Attribution 3.0.
-#                    Served from Blender's own host (and the Internet Archive).
-#   - Apple streams  Apple's public HLS reference/sample streams.
+# Every entry is openly licensed or synthetic:
+#   - Live test card  SMPTE colour bars with an on-screen clock, streamed 24/7 by
+#                     Unified Streaming's public demo service. Generated, not filmed:
+#                     there is no underlying work and nothing to license. It is the
+#                     only genuinely live entry, so it is what exercises live playback
+#                     and rewind - and the burnt-in clock makes that legible: pause
+#                     freezes it, rewind shows an earlier time.
+#   - Blender films   (c) Blender Foundation, Creative Commons Attribution 3.0.
+#                     Served from Blender's own host (and the Internet Archive).
+#   - Apple streams   Apple's public HLS reference/sample streams.
 #
 # Nothing here is a commercial broadcast channel.
+#
+# NASA TV was here until 2026-07-15. Both endpoints are DEAD: ntv1/ntv2.akamaized.net
+# still return 200 for master.m3u8, but every variant inside 404s and the masters were
+# last modified 2024-03-16 - Akamai is serving a two-year-old tombstone. Those URLs are
+# still copied across dozens of public playlists, which is exactly why they look alive.
+# Lesson for whoever edits this next: check a SEGMENT, not the master. A master is just
+# a text file, and a text file can outlive the stream by years.
 
-#EXTINF:-1 tvg-id="nasa.public" tvg-name="NASA TV Public" group-title="Live",NASA TV Public
-https://ntv1.akamaized.net/hls/live/2014075/NASA-NTV1-HLS/master.m3u8
-
-#EXTINF:-1 tvg-id="nasa.media" tvg-name="NASA TV Media" group-title="Live",NASA TV Media
-https://ntv2.akamaized.net/hls/live/2013923/NASA-NTV2-HLS/master.m3u8
+#EXTINF:-1 tvg-id="live.testcard" tvg-name="Live Test Card" group-title="Live",Live Test Card
+https://demo.unified-streaming.com/k8s/live/stable/live.isml/.m3u8
 
 #EXTINF:-1 tvg-id="blender.bbb" tvg-name="Big Buck Bunny" group-title="Films",Big Buck Bunny
 https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_h264.mov
