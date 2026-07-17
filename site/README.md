@@ -102,7 +102,12 @@ will resolve.
 
 ## Design notes
 
-- **No external requests** — no CDN fonts, no analytics, no tracking. The privacy policy
-  states Aero collects nothing; the site honours that.
+- **Minimal external requests** — no CDN fonts. The only third party is Google Analytics
+  (GA4), loaded via `assets/analytics.js` on the marketing pages (`index`, `support`, `404`)
+  for App-marketing measurement. It is **deliberately excluded from `privacy.html`**, whose
+  own copy promises "no external requests." The privacy policy is **app-scoped** — the Aero
+  app still collects nothing — so this site-side analytics does not contradict it. The GA4
+  Measurement ID lives in one place (`assets/analytics.js`); the CSP allowlist for Google's
+  domains is in `_headers`.
 - Light/dark mode via `prefers-color-scheme` in `styles.css`.
 - All three pages share one stylesheet; edit `styles.css` to restyle everything at once.
