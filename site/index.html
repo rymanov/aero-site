@@ -9,44 +9,87 @@
   -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aero IPTV: A native Mac player for your playlists</title>
-  <meta name="description" content="Aero is a fast, native macOS media player for M3U/M3U8 playlists and XMLTV guide data you already own. No content included. Bring your own playlist.">
+  <title>Aero: IPTV Player for Mac — M3U, Xtream &amp; XMLTV</title>
+  <meta name="description" content="A fast, native Mac IPTV player for the M3U/M3U8 playlists, Xtream logins, and XMLTV guide you already own. No content included — bring your own playlist. $19.99, no subscription.">
 
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://aeroplay.tv/">
-  <meta property="og:title"       content="Aero IPTV: A native Mac player for your playlists">
-  <meta property="og:description" content="Fast, native macOS media player for M3U/M3U8 playlists and XMLTV guide data you already own. No content included.">
+  <meta property="og:site_name"   content="Aero IPTV">
+  <meta property="og:title"       content="Aero: IPTV Player for Mac — M3U, Xtream &amp; XMLTV">
+  <meta property="og:description" content="A fast, native Mac IPTV player for the M3U/M3U8 playlists, Xtream logins, and XMLTV guide you already own. No content included — bring your own playlist.">
   <meta property="og:image"       content="https://aeroplay.tv/assets/og-image.jpg">
   <meta property="og:image:width"  content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt"    content="Aero IPTV: a native Mac player for M3U/M3U8 playlists and XMLTV guide data.">
 
   <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="Aero IPTV: A native Mac player for your playlists">
-  <meta name="twitter:description" content="Fast, native macOS media player for M3U/M3U8 playlists and XMLTV guide data you already own.">
+  <meta name="twitter:title"       content="Aero: IPTV Player for Mac — M3U, Xtream &amp; XMLTV">
+  <meta name="twitter:description" content="A fast, native Mac IPTV player for the M3U/M3U8 playlists, Xtream logins, and XMLTV guide you already own. No content included.">
   <meta name="twitter:image"       content="https://aeroplay.tv/assets/og-image.jpg">
   <meta name="twitter:image:alt"   content="Aero IPTV: a native Mac player for M3U/M3U8 playlists and XMLTV guide data.">
 
   <link rel="canonical" href="https://aeroplay.tv/">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#06090b">
   <link rel="stylesheet" href="styles.css">
   <script src="assets/analytics.js"></script>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Aero IPTV",
-    "applicationCategory": "MultimediaApplication",
-    "operatingSystem": "macOS",
-    "description": "A fast, native macOS media player for M3U/M3U8 playlists and XMLTV guide data you already own. No content included. Bring your own playlist.",
-    "url": "https://aeroplay.tv/",
-    "image": "https://aeroplay.tv/assets/og-image.jpg",
-    "offers": {
-      "@type": "Offer",
-      "price": "19.99",
-      "priceCurrency": "USD"
-    }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://aeroplay.tv/#organization",
+        "name": "Aero IPTV",
+        "url": "https://aeroplay.tv/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://aeroplay.tv/assets/icon-512.png",
+          "width": 512,
+          "height": 512
+        },
+        "email": "support@aeroplay.tv"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://aeroplay.tv/#website",
+        "url": "https://aeroplay.tv/",
+        "name": "Aero IPTV",
+        "description": "A fast, native Mac IPTV player for the M3U/M3U8 playlists, Xtream logins, and XMLTV guide you already own.",
+        "publisher": { "@id": "https://aeroplay.tv/#organization" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://aeroplay.tv/#app",
+        "name": "Aero IPTV",
+        "alternateName": "Aero",
+        "applicationCategory": "MultimediaApplication",
+        "applicationSubCategory": "IPTV Player",
+        "operatingSystem": "macOS",
+        "description": "A fast, native macOS IPTV player for the M3U/M3U8 playlists, Xtream logins, and XMLTV guide data you already own. No content included. Bring your own playlist.",
+        "url": "https://aeroplay.tv/",
+        "image": "https://aeroplay.tv/assets/og-image.jpg",
+        "screenshot": "https://aeroplay.tv/assets/screenshot-hero.jpg",
+        "softwareVersion": "1.0",
+        "publisher": { "@id": "https://aeroplay.tv/#organization" },
+        "featureList": [
+          "Play M3U and M3U8 playlists you already own",
+          "Add a playlist by URL, local file, or Xtream login",
+          "XMLTV program guide (EPG) with now & next",
+          "Catch-up: watch last night's episode from the guide",
+          "Browse, search, favourite, and shuffle your channels",
+          "No ads, no account, no tracking — private by default"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "19.99",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
   }
   </script>
 </head>
