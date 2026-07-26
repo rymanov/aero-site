@@ -168,6 +168,18 @@ ssh mini-home bash -s <<'REMOTE'
 set -uo pipefail
 BIN=/Applications/Aero.app/Contents/MacOS/Aero
 
+# A push to main triggers the CI runner on this box, whose test host is ALSO
+# an Aero.app (same bundle id, different path). Deploying into that window
+# made 'quit app "Aero"' ambiguous (the 211/213 "did not quit in 15s" cases)
+# and open(2) return LSError -600 (the 218 case). Wait it out, bounded.
+CI_BIN='aero-ci-dd.*Aero.app'
+for _ in $(seq 1 60); do
+  pgrep -f "$CI_BIN" >/dev/null || break
+  echo "  -> CI test host running; waiting (Aero deploys don't race Aero tests)"
+  sleep 5
+done
+pgrep -f "$CI_BIN" >/dev/null && echo "  -> WARNING: CI host still up after 5m; proceeding"
+
 osascript -e 'quit app "Aero"' 2>/dev/null || true
 for _ in $(seq 1 15); do
   pgrep -f "$BIN" >/dev/null || break
@@ -183,10 +195,18 @@ if pgrep -f "$BIN" >/dev/null; then
   exit 1
 fi
 
-open /Applications/Aero.app
-sleep 4
-if ! pgrep -f "$BIN" >/dev/null; then
-  echo "ERROR: Aero failed to stay running after launch"
+# LaunchServices can transiently refuse (-600) right after the quit or while
+# another same-bundle-id instance deregisters — retry before declaring death.
+LAUNCHED=0
+for attempt in 1 2 3; do
+  open /Applications/Aero.app && true
+  sleep 4
+  if pgrep -f "$BIN" >/dev/null; then LAUNCHED=1; break; fi
+  echo "  -> launch attempt $attempt did not stick; retrying"
+  sleep 3
+done
+if [ "$LAUNCHED" != 1 ]; then
+  echo "ERROR: Aero failed to stay running after 3 launch attempts"
   exit 1
 fi
 echo "  -> launched and still up after 4s"
