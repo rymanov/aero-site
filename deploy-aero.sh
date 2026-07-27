@@ -199,6 +199,16 @@ fi
 # another same-bundle-id instance deregisters — retry before declaring death.
 LAUNCHED=0
 for attempt in 1 2 3; do
+  # A retry can race a launch that was merely slow to come up: open(1) then
+  # starts a SECOND instance (two PIDs, twice, on 2026-07-26), and every
+  # transient instance logs in to a panel with a 1-connection cap. So: never
+  # open while Aero is already up. $BIN is path-scoped, so the CI test host
+  # (same bundle id, different path) does not count as running.
+  if pgrep -f "$BIN" >/dev/null; then
+    echo "  -> Aero already running before attempt $attempt (a prior launch came up late); not launching again"
+    LAUNCHED=1
+    break
+  fi
   open /Applications/Aero.app && true
   sleep 4
   if pgrep -f "$BIN" >/dev/null; then LAUNCHED=1; break; fi
