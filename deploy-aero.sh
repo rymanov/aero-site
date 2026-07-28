@@ -148,7 +148,18 @@ SHA="${INFO#*|}"
 echo "=== Installing (build $BUILT @ $SHA) ==="
 ssh mini-admin bash -s <<'REMOTE'
 set -euo pipefail
-rm -rf /Applications/Aero.app
+# mv-aside, then best-effort delete. Never rm the live bundle in place: the
+# StoreKit daemon writes a ROOT-owned _MASReceipt/receipt into the running
+# app (first seen on the TV bundle 2026-07-28), and an rm -rf that dies on it
+# leaves /Applications/Aero.app half-deleted with the TV app dead. A rename
+# is immune to inner ownership; root-owned wreckage parks aside (one-time
+# sudo rm to clear) instead of blocking the install.
+if [ -d /Applications/Aero.app ]; then
+  PARK="/Applications/.Aero.old.$$"
+  mv /Applications/Aero.app "$PARK"
+  rm -rf "$PARK" 2>/dev/null \
+    || echo "  -> NOTE: root-owned files (MAS receipt) block cleanup; parked at $PARK — clear once with sudo rm -rf"
+fi
 cp -R ~/dev/aero/build/Build/Products/Release/Aero.app /Applications/
 REMOTE
 
