@@ -9,16 +9,18 @@
 # outside this tree, where they cannot be committed here by accident.
 
 # --- The wiki is its own repository (rymanov/aero-wiki, PRIVATE) and is the
-#     SSOT for product/eng/store/site/brand.
+#     SSOT for product/eng/store/site/brand. In normal use it is NOT checked out
+#     here: it sits beside this repo in the Projects/Aero workspace, and
+#     site/scripts/check-content-sync.py looks there when nothing is present at
+#     this path.
 #
-#     It appears here as a SYMLINK to ../aero-wiki, deliberately: site/scripts/
-#     check-content-sync.py resolves the wiki as REPO_ROOT/aero-wiki, and CI
-#     checks it out to that same shape (actions/checkout with path: aero-wiki).
-#     The symlink keeps the local layout identical to the CI layout.
+#     The rule still matters. CI checks the wiki out INTO this repo
+#     (actions/checkout with `path: aero-wiki`), and a clone or symlink may
+#     appear here locally. THIS REPO IS PUBLIC — none of that may be committable.
 #
-#     NOTE THE MISSING TRAILING SLASH. "aero-wiki/" matches directories only,
-#     and a symlink is a file to git — with the slash this line silently stops
-#     ignoring, and the link becomes committable. Leave it as it is. ---
+#     NOTE THE MISSING TRAILING SLASH. "aero-wiki/" matches directories only, so
+#     a symlink — a file as far as git is concerned — would stop being ignored.
+#     This form covers both cases. Leave it as it is. ---
 /aero-wiki
 
 # --- Local scratch / handoff / design / prompt docs, should any land at this

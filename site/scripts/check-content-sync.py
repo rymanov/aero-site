@@ -53,7 +53,29 @@ from pathlib import Path
 # script is at <repo>/site/scripts/ ; repo root is two levels up
 REPO_ROOT = Path(__file__).resolve().parents[2]
 SITE_DIR = REPO_ROOT / "site"
-WIKI_DIR = Path(os.environ.get("AERO_WIKI_DIR", REPO_ROOT / "aero-wiki"))
+
+
+def _default_wiki_dir() -> Path:
+    """Where to find rymanov/aero-wiki when AERO_WIKI_DIR is not set.
+
+    CI checks it out inside the repo (actions/checkout with `path: aero-wiki`).
+    Locally the two repos are peers in the Projects/Aero workspace, so a sibling
+    of the repo is the other legitimate shape. Try the CI path first so a run
+    inside Actions can never pick up a stray checkout from the parent directory.
+    """
+    for candidate in (REPO_ROOT / "aero-wiki", REPO_ROOT.parent / "aero-wiki"):
+        if candidate.is_dir():
+            return candidate
+    # Neither exists: report against the CI path, which is what the error text
+    # and the README tell you to create.
+    return REPO_ROOT / "aero-wiki"
+
+
+WIKI_DIR = (
+    Path(os.environ["AERO_WIKI_DIR"])
+    if os.environ.get("AERO_WIKI_DIR")
+    else _default_wiki_dir()
+)
 
 # (human label, html file, wiki page, section to enforce, mirror section or None)
 # `mirror` is a second section on the SAME wiki page that must also contain every
