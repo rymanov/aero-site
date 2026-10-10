@@ -25,6 +25,8 @@
   --accent-h:     #16c6da;
   --accent-deep:  #0a8294;
   --accent-soft:  rgba(15,181,201,.12);
+  /* Selected-segment fill in the browse mode switcher — the app's accent @30%. */
+  --accent-soft-strong: rgba(15,181,201,.30);
   /* Text-on-light accents — meet WCAG AA on white and on the soft pills */
   --accent-ink:   #076b7c;
   --warm-ink:     #9e3f18;
@@ -300,6 +302,9 @@ img { max-width: 100%; height: auto; display: block; }
   line-height: 1.02;
   color: #fff;
   margin-bottom: .38em;
+  /* One line from 449px up; below that it wraps, so balance the break
+     rather than orphaning the last word. */
+  text-wrap: balance;
 }
 
 .hero .tagline {
@@ -321,12 +326,16 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .badge-link:hover { transform: translateY(-2px); }
 .badge-link:focus-visible { border-radius: 14px; }
-.badge-link svg { display: block; }
+/* Block, so the badge box is exactly the badge — an inline image sits on the
+   text baseline and smuggles ~6px of descender space under it. */
+.badge-link svg,
+.badge-link img { display: block; }
 /* Pre-launch: badge is shown as a preview, not yet a live link */
 .badge-link.is-soon { pointer-events: none; opacity: .62; }
-/* Hero: badge + price line form one CTA group, so keep them close and put the
-   breathing room below the price (before the screenshot), not above it. */
-.hero .badge-link { margin-bottom: 1.25rem; }
+/* Hero carries the badge alone (2026-08-03: trial + price moved to the closing
+   CTA). With nothing between them, the default 72px left the screenshot adrift,
+   so pull it up under the badge. */
+.hero .badge-link { margin-bottom: 2.5rem; }
 
 /* Hero screenshot — floats forward with depth and a colored glow bleed */
 .hero-screenshot {
@@ -397,24 +406,24 @@ img { max-width: 100%; height: auto; display: block; }
   max-width: var(--max-w);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* Not 1fr 1fr: the copy is a headline and one short line, while the panel is
+     a whole app UI. An even split starved the panel and left the copy column
+     half empty. */
+  grid-template-columns: .82fr 1.18fr;
   align-items: start;
   gap: clamp(32px, 6vw, 72px);
 }
 .showcase-reverse .showcase-copy { order: 2; }
 .showcase-reverse .showcase-visual { order: 1; }
+/* Grid columns are positional but the reverse showcase swaps its children with
+   `order`, so the ratio has to swap too — otherwise the panel lands in the
+   narrow column and the two showcases' visuals come out different widths. */
+.showcase-inner.showcase-reverse { grid-template-columns: 1.18fr .82fr; }
 
-.showcase-kicker {
-  display: inline-block;
-  font-size: .8125rem;
-  font-weight: 600;
-  letter-spacing: .01em;
-  padding: 6px 14px;
-  border-radius: 999px;
-  margin-bottom: 18px;
-}
-.kicker-teal { color: var(--accent-ink); background: var(--accent-soft); }
-.kicker-warm { color: var(--warm-ink); background: var(--warm-soft); }
+/* The "Channel" / "Programme" kicker pills (.showcase-kicker, .kicker-teal,
+   .kicker-warm) were removed 2026-08-03 — they labelled the showcases rather
+   than saying anything, and the Channel one had gone narrower than its own copy.
+   The headline is now the first thing in each showcase. */
 
 .showcase-copy h3 {
   font-size: clamp(1.75rem, 3.6vw, 2.75rem);
@@ -541,28 +550,126 @@ img { max-width: 100%; height: auto; display: block; }
 .gr-play svg { width: 13px; height: 13px; }
 
 /* ---- Channel browser panel (mirrors ChannelBrowserView) ---- */
+/* The app aligns these columns with a SHARED BAND system (BrowseRhythm): every
+   column's header is one fixed height with content centred, and the tab row is
+   a second fixed band with its hairline pinned to the bottom edge. Stacking
+   each column independently and hoping the paddings match is exactly what puts
+   the two hairlines on different pixel rows. So: one grid, two shared band
+   rows, alignment by construction. 52/32 is the app's 76/44 at the site's type
+   scale. */
 .browse-panel {
   padding: 0;
   display: grid;
   grid-template-columns: 38% 62%;
+  grid-template-rows: 52px 32px 1fr;
   overflow: hidden;
 }
-.browse-rail {
-  padding: 16px 12px;
+.bp-cell { min-width: 0; }
+.bp-rail {
   border-right: 1px solid rgba(255,255,255,.08);
+  padding: 0 14px;
+}
+.bp-list { padding: 0 16px; }
+
+/* Band 1 — content vertically centred, so the wordmark and the search field
+   sit on one horizontal axis. */
+.bp-band-head { display: flex; align-items: center; }
+
+/* Band 2 — the hairline goes on the INNER element, not the cell. A cell spans
+   the full column width, so its bottom border runs into the rail's vertical
+   border and CSS mitres the two 1px edges into a visible notch at the seam.
+   Inset lines (the approved App Store frame does the same) never touch the
+   divider, so there is no corner to mitre. Both inner elements are full-height
+   in a shared fixed band, so their bottoms still land on one row.
+   Modes centre in the band (they are boxes); tabs sit on the bottom so their
+   underline meets the line. */
+.bp-band-tabs { display: flex; }
+.bp-band-tabs > * {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.bp-rail.bp-band-tabs > * { align-items: center; }
+.bp-list.bp-band-tabs > * { align-items: flex-end; }
+
+/* Band 3 — the bodies. Aligning the box tops is not enough: the marked row
+   paints a tint from its box top, while the BROWSE label sits inside its own
+   padding, so equal box tops still read as the right column starting higher
+   and tighter. Space is set from the hairline to the first VISIBLE thing on
+   each side (tint block vs label), matching the approved App Store frame. */
+.bp-body { padding-top: 12px; padding-bottom: 16px; }
+/* Rail header — wordmark + settings gear, mirroring railHeader. The band owns
+   the vertical placement; this just fills its width. */
+.rail-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 0 4px;
 }
 .rail-title {
-  font-size: 1.375rem;
+  font-size: 1.1875rem;
   font-weight: 700;
   letter-spacing: -.03em;
-  padding: 2px 8px 14px;
 }
+.rail-gear {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.07);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: rgba(255,255,255,.7);
+}
+.rail-gear svg { width: 13px; height: 13px; display: block; }
+
+/* Live TV | Movies | Series — the top-level split. Boxed equal-width segments,
+   not an underline strip: this row switches the whole surface. */
+.rail-modes {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+}
+.rail-mode {
+  flex: 1;
+  text-align: center;
+  padding: 6px 2px;
+  border-radius: 8px;
+  font-size: .6875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  background: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.55);
+}
+.rail-mode.on {
+  background: var(--accent-soft-strong);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* BROWSE section label + the quick-filter funnel. */
+.rail-sec {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1px 8px 6px;
+}
+.rail-sec-label {
+  font-size: .625rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+}
+.rail-funnel { width: 13px; height: 13px; display: block; color: var(--accent-h); }
+
 .rail-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 9px 10px;
+  padding: 10px 10px;
   border-radius: 9px;
   font-size: .875rem;
   color: rgba(255,255,255,.85);
@@ -572,31 +679,50 @@ img { max-width: 100%; height: auto; display: block; }
   font-variant-numeric: tabular-nums;
   color: rgba(255,255,255,.4);
 }
-.rail-btn.on {
-  background: var(--accent);
-  color: #fff;
-  font-weight: 600;
-}
-.rail-btn.on .rail-count { color: rgba(255,255,255,.85); }
 
-.browse-list { padding: 16px 14px; }
+/* All channels | Recent | Favorites — the curated views, an underline strip.
+   Bottom-aligned in the tab band so the selected underline meets the band's
+   hairline, which is the same line the rail closes on. */
+.browse-tabs {
+  display: flex;
+  gap: 16px;
+  padding: 0 2px;
+}
+.browse-tab {
+  position: relative;
+  padding-bottom: 7px;
+  font-size: .75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: rgba(255,255,255,.45);
+}
+.browse-tab.on { color: #fff; font-weight: 600; }
+.browse-tab.on::after {
+  content: "";
+  position: absolute;
+  left: 50%; bottom: 0;
+  transform: translateX(-50%);
+  width: 16px; height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+}
 .browse-search {
   display: flex;
   align-items: center;
   gap: 9px;
   background: rgba(255,255,255,.07);
   border-radius: 11px;
-  padding: 10px 13px;
+  padding: 9px 13px;
   font-size: .875rem;
   color: rgba(255,255,255,.45);
-  margin-bottom: 10px;
+  width: 100%;
 }
 .browse-search svg { width: 16px; height: 16px; flex-shrink: 0; }
 .browse-row {
   display: flex;
   align-items: center;
   gap: 11px;
-  padding: 9px 8px;
+  padding: 11px 8px;
   border-radius: 11px;
 }
 .browse-row.marked { background: var(--accent-soft); }
@@ -609,13 +735,30 @@ img { max-width: 100%; height: auto; display: block; }
   overflow: hidden;
 }
 .brow-logo img { width: 100%; height: 100%; display: block; }
-.brow-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.brow-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 .brow-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
   font-size: .9375rem;
   font-weight: 600;
   letter-spacing: -.01em;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap; overflow: hidden;
 }
+/* Quality tier capsule (TierBadge): resolution only, and only when known, so a
+   badge always means something. */
+.brow-badge {
+  flex-shrink: 0;
+  font-size: .5625rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  color: rgba(255,255,255,.8);
+  background: rgba(255,255,255,.13);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+.browse-row.marked .brow-badge { color: rgba(255,255,255,.8); }
 .browse-row.marked .brow-name { color: var(--accent-h); }
 .brow-now { font-size: .75rem; color: rgba(255,255,255,.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .brow-star { font-size: .9375rem; color: rgba(255,255,255,.22); flex-shrink: 0; }
@@ -749,11 +892,20 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: 2rem;
 }
 .section-cta .badge-link { margin-bottom: 0; }
+/* Offer terms live at the close, after the pitch, not in the hero. */
+.cta-offer {
+  margin-top: 1.5rem;
+  margin-bottom: 0 !important;
+  font-size: 1.0625rem !important;
+  color: var(--text-hero) !important;
+}
+.cta-offer strong { color: var(--accent-h); font-weight: 600; }
 .cta-trust {
   margin-top: 1.5rem;
   font-size: .9375rem !important;
   color: var(--text-hero-muted) !important;
 }
+.cta-offer + .cta-trust { margin-top: .5rem; }
 
 /* 404 page */
 .error-page { min-height: 70vh; display: flex; align-items: center; }
@@ -1028,11 +1180,37 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* Showcase rows stack on tablet/mobile — copy always above its visual */
 @media (max-width: 760px) {
-  .showcase-inner { grid-template-columns: 1fr; gap: 28px; }
+  /* Both selectors: the reverse rule above is (0,2,0), so a bare
+     `.showcase-inner` here would lose to it and leave that row two-column. */
+  .showcase-inner,
+  .showcase-inner.showcase-reverse { grid-template-columns: 1fr; gap: 28px; }
   .showcase-copy { order: 0 !important; }
   .showcase-visual { order: 1 !important; }
   .showcase-copy p { max-width: none; }
   .mini-panel { max-width: 460px; }
+
+  /* Grid items default to min-width:auto, so the browse panel refused to
+     shrink below its ~386px min-content and broke out of a 331px column,
+     ending up flush against the viewport edge. Let it shrink, then trim the
+     internals so the mode switcher still fits three segments without wrapping. */
+  .showcase-visual { min-width: 0; }
+  .browse-panel { grid-template-columns: 40% 60%; grid-template-rows: 44px 28px 1fr; }
+  .bp-rail { padding: 0 10px; }
+  .bp-list { padding: 0 11px; }
+  .bp-body { padding-top: 10px; padding-bottom: 12px; }
+  .rail-title { font-size: 1.0625rem; }
+  .rail-gear { width: 22px; height: 22px; }
+  .rail-gear svg { width: 11px; height: 11px; }
+  .rail-modes { gap: 3px; }
+  .rail-mode { font-size: .625rem; padding: 5px 1px; border-radius: 7px; }
+  .rail-sec { padding: 1px 6px 5px; }
+  .rail-btn { font-size: .8125rem; padding: 8px 8px; }
+  .browse-tabs { gap: 12px; }
+  .browse-tab { font-size: .6875rem; }
+  .browse-search { font-size: .8125rem; padding: 9px 11px; }
+  .browse-row { gap: 9px; padding: 9px 6px; }
+  .brow-logo { width: 30px; height: 30px; }
+  .brow-name { font-size: .875rem; }
 }
 
 /* Player overlay scales down with the shrinking hero photo */
@@ -1068,33 +1246,7 @@ img { max-width: 100%; height: auto; display: block; }
   .ctrl-play svg { width: 20px !important; height: 20px !important; }
 }
 
-/* ── Hero launch price (v1.1, 2026-07-07) ── */
-/* Lead offer — the free trial is the hook; price sits below as reassurance. */
-.hero-trial {
-  margin: 0 0 .5rem;
-  font-size: 1.375rem;
-  font-weight: 600;
-  letter-spacing: -.02em;
-  color: var(--text-hero);
-}
-.hero-trial strong {
-  color: var(--accent-h);
-  font-weight: 700;
-}
-.hero-price {
-  margin: 0 0 4.5rem;
-  font-size: 1.125rem;
-  color: var(--text-hero-muted);
-}
-.hero-price strong {
-  color: var(--accent-h);
-  font-weight: 600;
-}
-.hero-price-fine {
-  display: block;
-  margin-top: .4rem;
-  font-size: .9375rem;
-  font-weight: 400;
-  color: var(--text-hero-muted);
-  letter-spacing: -.01em;
-}
+/* The hero trial/price block (.hero-trial, .hero-price, .hero-price-fine) was
+   removed 2026-08-03 — the hero was reading busy and the offer terms moved to
+   the closing CTA as .cta-offer. Rules deleted rather than left orphaned; git
+   has them if the hero placement comes back. */
