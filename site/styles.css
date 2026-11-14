@@ -246,7 +246,7 @@ img { max-width: 100%; height: auto; display: block; }
   position: relative;
   background: var(--bg-hero);
   text-align: center;
-  padding: 52px 22px 0;
+  padding: 52px 22px clamp(56px, 8vw, 96px);
   overflow: hidden;
   isolation: isolate;
 }
@@ -298,7 +298,8 @@ img { max-width: 100%; height: auto; display: block; }
 .hero h1 {
   font-size: clamp(2.75rem, 7.5vw, 5rem);
   font-weight: 700;
-  letter-spacing: -.055em;
+  letter-spacing: -.035em;
+  word-spacing: .03em;
   line-height: 1.02;
   color: #fff;
   margin-bottom: .38em;
@@ -396,6 +397,7 @@ img { max-width: 100%; height: auto; display: block; }
   line-height: 1.06;
 }
 .intro-dim { color: var(--text-muted); }
+.intro-head { text-wrap: balance; }
 
 /* ---------- Showcase rows ---------- */
 .showcase {
@@ -410,7 +412,7 @@ img { max-width: 100%; height: auto; display: block; }
      a whole app UI. An even split starved the panel and left the copy column
      half empty. */
   grid-template-columns: .82fr 1.18fr;
-  align-items: start;
+  align-items: center;
   gap: clamp(32px, 6vw, 72px);
 }
 .showcase-reverse .showcase-copy { order: 2; }
@@ -857,7 +859,7 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: 1em;
 }
 .section-byop p:last-child { margin-bottom: 0; }
-.byop-fine { font-size: .9375rem; color: var(--text-muted); opacity: .8; }
+.byop-fine { font-size: .9375rem; color: var(--text-muted); }
 
 /* ---------- Closing CTA ---------- */
 .section-cta {
@@ -884,7 +886,7 @@ img { max-width: 100%; height: auto; display: block; }
   letter-spacing: -.05em;
   line-height: 1.02;
   color: #fff;
-  margin-bottom: .4em;
+  margin-bottom: 28px;
 }
 .section-cta p {
   font-size: clamp(1.0625rem, 2vw, 1.25rem);
@@ -932,7 +934,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* ---------- Player frame (hero screenshot) ---------- */
 .player-frame {
   position: relative;
-  border-radius: 18px 18px 0 0;
+  border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 0 0 1px rgba(255,255,255,.08);
 }
@@ -1168,14 +1170,14 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 680px) {
-  .hero { padding: 56px 22px 0; }
+  .hero { padding: 56px 22px 48px; }
   .feature-card { border-right: none; border-bottom: 1px solid var(--border); }
   .feature-card:last-child { border-bottom: none; }
 }
 
 @media (max-width: 480px) {
   .site-nav { padding: 0 16px; }
-  .hero h1 { letter-spacing: -.04em; }
+  .hero h1 { letter-spacing: -.03em; }
 }
 
 /* Showcase rows stack on tablet/mobile — copy always above its visual */
@@ -1250,3 +1252,211 @@ img { max-width: 100%; height: auto; display: block; }
    removed 2026-08-03 — the hero was reading busy and the offer terms moved to
    the closing CTA as .cta-offer. Rules deleted rather than left orphaned; git
    has them if the hero placement comes back. */
+
+
+/* ============================================================
+   1.2 refresh (2026-11-14, D-121)
+   ============================================================ */
+
+/* Nav: a quiet way to the App Store once the page is long */
+.nav-links .nav-cta {
+  color: #fff;
+  background: var(--accent-deep);
+  border-radius: 999px;
+  padding: 5px 13px;
+  font-weight: 600;
+}
+.nav-links .nav-cta:hover { background: var(--accent); color: #fff; }
+.nav-dark .nav-links .nav-cta { color: #fff; }
+
+/* Hero top-bar glyphs: sized by class (the strict CSP blocks inline style) so
+   the four SF Symbol traces keep their relative sizes from the app. */
+.player-top-actions .ctrl-glyph svg.g-replay  { width: 17.3px; height: 17.3px; }
+.player-top-actions .ctrl-glyph svg.g-shuffle { width: 21.8px; height: 17.4px; }
+.player-top-actions .ctrl-glyph svg.g-star    { width: 20.4px; height: 19.5px; }
+.player-top-actions .ctrl-glyph svg.g-list    { width: 19.9px; height: 14.7px; }
+.hero-screenshot .player-frame {
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.08),
+    0 2px 0 1px rgba(255,255,255,.06) inset,
+    0 50px 100px -30px rgba(0,0,0,.8),
+    0 0 140px -20px var(--glow-teal);
+}
+
+/* Showcase points: three short facts under each pitch */
+.showcase-points {
+  margin-top: 1.4em;
+  display: grid;
+  gap: .7em;
+}
+.showcase-points li {
+  position: relative;
+  padding-left: 30px;
+  font-size: .9875rem;
+  line-height: 1.45;
+  letter-spacing: -.012em;
+  color: var(--text);
+}
+.showcase-points li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .12em;
+  width: 19px; height: 19px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+}
+.showcase-points li::after {
+  content: "";
+  position: absolute;
+  left: 6.5px; top: calc(.12em + 5px);
+  width: 6px; height: 9px;
+  border: solid var(--accent-ink);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.showcase-fine {
+  margin-top: 1.3em;
+  font-size: .875rem !important;
+  color: var(--text-muted);
+}
+
+/* Movies & Series panel: the browse grid, with poster shelves in the list */
+.library-panel .bp-body { padding-bottom: 14px; }
+.shelf + .shelf { margin-top: 12px; }
+.shelf-title {
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: rgba(255,255,255,.92);
+  margin: 0 2px 8px;
+}
+.shelf-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+}
+.poster { margin: 0; min-width: 0; }
+.poster img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 7px;
+  box-shadow: 0 6px 14px -6px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.06);
+  transition: transform .3s ease;
+}
+.library-panel:hover .poster:first-child img { transform: translateY(-2px) scale(1.03); }
+.poster figcaption { margin-top: 6px; display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.poster b {
+  font-size: .6875rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.9);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.poster figcaption span {
+  font-size: .625rem;
+  color: rgba(255,255,255,.5);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Guide: past programmes are marked REC and can be replayed, as in GuideView */
+.gr-rec {
+  font-size: .625rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: #ff6b5e;
+  border: 1px solid rgba(255,107,94,.5);
+  border-radius: 4px;
+  padding: 0 4px;
+  line-height: 1.5;
+}
+.gr-replay {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.75);
+  background: rgba(255,255,255,.08);
+  flex-shrink: 0;
+}
+.gr-replay svg { width: 11px; height: 11px; }
+
+/* Feature cards: lift them off the dark section instead of reading as holes */
+@media (prefers-color-scheme: dark) {
+  .feature-card {
+    background: linear-gradient(180deg, #121a1d 0%, #0e1416 100%);
+    border-color: rgba(255,255,255,.08);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+  }
+}
+
+/* Free and Pro */
+.section-plans {
+  background: var(--bg-section);
+  padding: var(--section-v) 22px;
+  border-top: 1px solid var(--border);
+}
+.plans-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+.section-plans h2 {
+  font-size: clamp(1.9rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -.045em;
+  line-height: 1.05;
+  margin-bottom: 1.1em;
+}
+.plans {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  text-align: left;
+}
+.plan {
+  padding: 28px 28px 30px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--bg-section-alt);
+}
+.plan h3 { font-size: 1.125rem; font-weight: 600; letter-spacing: -.03em; }
+.plan-price {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -.04em;
+  margin: .25em 0 .4em;
+}
+.plan-price span { font-size: 1rem; font-weight: 500; letter-spacing: -.01em; color: var(--text-muted); }
+.plan p:last-child { font-size: .9375rem; line-height: 1.55; color: var(--text-muted); }
+.plan-pro {
+  border-color: rgba(15,181,201,.45);
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgba(15,181,201,.14) 0%, transparent 60%),
+    var(--bg-section-alt);
+}
+.plan-pro h3 { color: var(--accent-ink); }
+.plans-fine { margin-top: 1.4em; font-size: .9375rem; color: var(--text-muted); }
+@media (prefers-color-scheme: dark) {
+  .plan { background: linear-gradient(180deg, #121a1d 0%, #0e1416 100%); border-color: rgba(255,255,255,.08); }
+  .plan-pro {
+    border-color: rgba(15,181,201,.45);
+    background:
+      radial-gradient(120% 90% at 100% 0%, rgba(15,181,201,.18) 0%, transparent 60%),
+      linear-gradient(180deg, #121a1d 0%, #0e1416 100%);
+  }
+}
+@media (max-width: 640px) { .plans { grid-template-columns: 1fr; } }
+
+/* Mobile tidy-ups */
+@media (max-width: 620px) {
+  .player-next { display: none; }
+  .player-top-actions .ctrl-glyph svg.g-replay  { width: 13.8px; height: 13.8px; }
+  .player-top-actions .ctrl-glyph svg.g-shuffle { width: 17.4px; height: 13.9px; }
+  .player-top-actions .ctrl-glyph svg.g-star    { width: 16.3px; height: 15.6px; }
+  .player-top-actions .ctrl-glyph svg.g-list    { width: 15.9px; height: 11.8px; }
+}
+@media (max-width: 760px) {
+  .shelf-row { gap: 7px; }
+  .poster b { font-size: .625rem; }
+}
+@media (max-width: 440px) {
+  .shelf-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .shelf-row .poster:nth-child(4) { display: none; }
+  .nav-links { gap: 14px; }
+}

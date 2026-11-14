@@ -1,0 +1,12 @@
+Film posters used in the Movies & Series mock-up on aeroplay.tv.
+All are in the public domain, per their Wikimedia Commons file pages (checked 2026-11-14,
+LicenseShortName "Public domain"). Resized to 300px tall; otherwise unchanged.
+
+charade.jpg      Charade (1963)                      https://commons.wikimedia.org/wiki/File:Charade_(1963_poster).jpg
+girl-friday.jpg  His Girl Friday (1940)              https://commons.wikimedia.org/wiki/File:His_Girl_Friday_(1940_poster).jpg
+the-general.jpg  The General (1926)                  https://commons.wikimedia.org/wiki/File:The_General_(1926)_-_Movie_Poster_2.png
+caligari.jpg     The Cabinet of Dr. Caligari (1920)  https://commons.wikimedia.org/wiki/File:The_Cabinet_of_Doctor_Caligari_Movie_poster.jpg
+phantom.jpg      The Phantom of the Opera (1925)     https://commons.wikimedia.org/wiki/File:The_Phantom_of_the_Opera_(1925).jpg
+detour.jpg       Detour (1945)                       https://commons.wikimedia.org/wiki/File:Detour_(poster).jpg
+carnival.jpg     Carnival of Souls (1962)            https://commons.wikimedia.org/wiki/File:Carnival_of_Souls_(1962_one-sheet_poster).jpg
+living-dead.jpg  Night of the Living Dead (1968)     https://commons.wikimedia.org/wiki/File:Night_Of_The_Living_Dead_(1968)_-_Poster.jpg
