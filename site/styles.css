@@ -176,6 +176,7 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-links a:hover { color: var(--text); text-decoration: none; }
 .nav-dark .nav-links a:hover { color: #f5f5f7; }
 .nav-links a[aria-current="page"] { color: var(--accent-ink); }
+.nav-dark .nav-links a[aria-current="page"] { color: var(--accent-h); }
 
 /* ============================================================
    FOOTER
