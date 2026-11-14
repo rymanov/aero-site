@@ -15,24 +15,25 @@
   <meta property="og:url"         content="https://aeroplay.tv/support">
   <meta property="og:site_name"   content="Aero IPTV">
   <meta property="og:title"       content="Support: Aero IPTV">
-  <meta property="og:description" content="Support for Aero IPTV, the native Mac player for M3U playlists and XMLTV guides. Get started, add a playlist, and find answers to common questions.">
-  <meta property="og:image"       content="https://aeroplay.tv/assets/og-image.jpg">
+  <meta property="og:description" content="Support for Aero IPTV, the native Mac player for M3U playlists, Xtream logins and XMLTV guides. Get started, see what Pro adds, find answers to common questions, and contact us.">
+  <meta property="og:image"       content="https://aeroplay.tv/assets/og-image-v2.jpg">
   <meta property="og:image:width"  content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt"    content="Aero IPTV: a native Mac player for M3U/M3U8 playlists and XMLTV guide data.">
+  <meta property="og:image:alt"    content="Aero, the IPTV player for Mac: Live TV. Series. Movies. Bring your own playlist.">
 
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="Support: Aero IPTV">
-  <meta name="twitter:description" content="Get started with Aero IPTV: add a playlist, add an XMLTV guide, and find answers to common questions.">
-  <meta name="twitter:image"       content="https://aeroplay.tv/assets/og-image.jpg">
-  <meta name="twitter:image:alt"   content="Aero IPTV: a native Mac player for M3U/M3U8 playlists and XMLTV guide data.">
+  <meta name="twitter:description" content="Support for Aero IPTV, the native Mac player for M3U playlists, Xtream logins and XMLTV guides. Get started, see what Pro adds, find answers to common questions, and contact us.">
+  <meta name="twitter:image"       content="https://aeroplay.tv/assets/og-image-v2.jpg">
+  <meta name="twitter:image:alt"   content="Aero, the IPTV player for Mac: Live TV. Series. Movies. Bring your own playlist.">
 
   <link rel="canonical" href="https://aeroplay.tv/support">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <meta name="theme-color" content="#06090b">
   <link rel="stylesheet" href="styles.css">
-  <script src="assets/analytics.js"></script>
+  <script src="assets/analytics.js" defer></script>
 
   <script type="application/ld+json">
   {
@@ -44,7 +45,15 @@
         "name": "Where do I get a playlist?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "From an IPTV service you subscribe to. Aero does not provide channels or playlists and is not affiliated with any provider."
+          "text": "From an IPTV service you are entitled to use. Aero does not provide channels or playlists and is not affiliated with any provider."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where are Movies and Series?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They come from an Xtream account. A plain M3U playlist usually holds live TV only, so the Movies and Series tabs stay empty with one."
         }
       },
       {
@@ -52,7 +61,23 @@
         "name": "A channel won't play.",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Most playback issues are with the stream or your provider, not Aero. Confirm the same stream plays in VLC. Check your playlist URL is current."
+          "text": "Check that your playlist link is current and that the channel plays somewhere else. Then try the other player: Settings ▸ Playback ▸ Player switches between Native, Aero's own player, and VLC. If it still won't play, write to us."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Voices and lips don't line up.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This is common when sound plays through a soundbar or an amplifier and the TV shows the picture late. Settings ▸ Playback ▸ Sound delay (Aero 1.2) holds the sound back until they match."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Fast motion looks jerky.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A channel at 60 frames a second can't show every frame on a screen that refreshes 50 times a second. With the Native player, turn on Settings ▸ Playback ▸ Smooth 60 fps channels (Aero 1.2)."
         }
       },
       {
@@ -60,7 +85,23 @@
         "name": "What formats are supported?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Aero uses VLC's engine, so it handles a wide range of stream and codec formats, including HLS and MPEG-TS."
+          "text": "Aero's own player handles HLS and MPEG-TS streams with H.264 and HEVC video, up to 4K. VLC's engine is built in for most other formats, and Aero switches to it on its own when a stream needs it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which Macs does Aero run on?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Any Mac with macOS 14 Sonoma or later, Apple silicon or Intel."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I restore Aero Pro?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open Settings ▸ Aero Pro and click Restore Purchases, signed in with the Apple Account you bought it with. Billing and refunds are handled by Apple at reportaproblem.apple.com."
         }
       }
     ]
@@ -94,8 +135,7 @@
       or click Add Xtream account and enter your server, username and password. Aero ships
       empty. It has no built-in channels.</dd>
       <dt>2. (Optional) Add a guide</dt>
-      <dd>Many playlists bring their own guide. If yours doesn't, paste your XMLTV link into the
-      playlist's Guide link field to see what's on now and next.</dd>
+      <dd>Many playlists bring their own guide, and Aero reads it on its own. If yours doesn't, paste your XMLTV link into the playlist's Guide link field (Aero 1.2) to see what's on now and next.</dd>
       <dt>3. Watch</dt>
       <dd>Pick a channel and play. Aero remembers your favourites and the last channel you
       watched.</dd>
@@ -109,32 +149,27 @@
     <h2>Common questions</h2>
     <dl>
       <dt>Where do I get a playlist?</dt>
-      <dd>From an IPTV service you subscribe to. Aero does not provide channels or playlists
-      and is not affiliated with any provider.</dd>
+      <dd>From an IPTV service you are entitled to use. Aero does not provide channels or playlists and is not affiliated with any provider.</dd>
       <dt>Where are Movies and Series?</dt>
-      <dd>They come from an Xtream account. A plain M3U playlist usually holds live TV only, so
-      the Movies and Series tabs stay empty with one.</dd>
+      <dd>They come from an Xtream account. A plain M3U playlist usually holds live TV only, so the Movies and Series tabs stay empty with one.</dd>
       <dt>A channel won't play.</dt>
-      <dd>Most playback issues are with the stream or your provider, not Aero. Check your
-      playlist link is current. Then try the other player: Settings ▸ Playback ▸ Player switches
-      between Native, Aero's own player, and VLC.</dd>
+      <dd>Check that your playlist link is current and that the channel plays somewhere else. Then try the other player: Settings ▸ Playback ▸ Player switches between Native, Aero's own player, and VLC. If it still won't play, write to us.</dd>
       <dt>Voices and lips don't line up.</dt>
-      <dd>This is common when sound plays through a soundbar or an amplifier. Settings ▸ Playback
-      ▸ Sound delay holds the sound back until they match.</dd>
+      <dd>This is common when sound plays through a soundbar or an amplifier and the TV shows the picture late. Settings ▸ Playback ▸ Sound delay (Aero 1.2) holds the sound back until they match.</dd>
       <dt>Fast motion looks jerky.</dt>
-      <dd>A channel at 60 frames a second can't show every frame on a screen that refreshes 50
-      times a second. With the Native player, turn on Settings ▸ Playback ▸ Smooth 60 fps
-      channels.</dd>
+      <dd>A channel at 60 frames a second can't show every frame on a screen that refreshes 50 times a second. With the Native player, turn on Settings ▸ Playback ▸ Smooth 60 fps channels (Aero 1.2).</dd>
       <dt>What formats are supported?</dt>
-      <dd>Aero's own player handles HLS and MPEG-TS streams with H.264 and HEVC video, up to 4K.
-      VLC's engine is built in for everything else, and Aero switches to it on its own when a
-      stream needs it.</dd>
+      <dd>Aero's own player handles HLS and MPEG-TS streams with H.264 and HEVC video, up to 4K. VLC's engine is built in for most other formats, and Aero switches to it on its own when a stream needs it.</dd>
+      <dt>Which Macs does Aero run on?</dt>
+      <dd>Any Mac with macOS 14 Sonoma or later, Apple silicon or Intel.</dd>
+      <dt>How do I restore Aero Pro?</dt>
+      <dd>Open Settings ▸ Aero Pro and click Restore Purchases, signed in with the Apple Account you bought it with. Billing and refunds are handled by Apple at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</dd>
     </dl>
 
     <h2>Contact</h2>
     <p>Need help? Email <a href="mailto:support@aeroplay.tv">support@aeroplay.tv</a>. To help us
     find the problem quickly, open Settings ▸ Playback, click Copy diagnostics, and paste it into
-    your email. It contains no playlist link or account details.</p>
+    your email. It contains no playlist link or account details. Please never send us your playlist link or Xtream password.</p>
   </main>
 
   <footer class="site-footer">

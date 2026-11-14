@@ -17,23 +17,24 @@
   <meta property="og:site_name"   content="Aero IPTV">
   <meta property="og:title"       content="Aero: IPTV Player for Mac. M3U, Xtream, Movies &amp; Series">
   <meta property="og:description" content="Native Mac IPTV player for the M3U playlists and Xtream logins you already own. Live TV, movies and series, with a guide, pause and rewind. No content included. Bring your own playlist.">
-  <meta property="og:image"       content="https://aeroplay.tv/assets/og-image.jpg">
+  <meta property="og:image"       content="https://aeroplay.tv/assets/og-image-v2.jpg">
   <meta property="og:image:width"  content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt"    content="A kingfisher perched on a branch, from Aero's demo picture.">
+  <meta property="og:image:alt"    content="Aero, the IPTV player for Mac: Live TV. Series. Movies. Bring your own playlist.">
 
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="Aero: IPTV Player for Mac. M3U, Xtream, Movies &amp; Series">
   <meta name="twitter:description" content="Native Mac IPTV player for the M3U playlists and Xtream logins you already own. Live TV, movies and series. No content included.">
-  <meta name="twitter:image"       content="https://aeroplay.tv/assets/og-image.jpg">
-  <meta name="twitter:image:alt"   content="A kingfisher perched on a branch, from Aero's demo picture.">
+  <meta name="twitter:image"       content="https://aeroplay.tv/assets/og-image-v2.jpg">
+  <meta name="twitter:image:alt"   content="Aero, the IPTV player for Mac: Live TV. Series. Movies. Bring your own playlist.">
 
   <link rel="canonical" href="https://aeroplay.tv/">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <meta name="theme-color" content="#06090b">
   <link rel="stylesheet" href="styles.css">
-  <script src="assets/analytics.js"></script>
+  <script src="assets/analytics.js" defer></script>
 
   <script type="application/ld+json">
   {
@@ -72,7 +73,7 @@
         "description": "A fast, native macOS IPTV player for the M3U/M3U8 playlists, Xtream logins, and XMLTV guide data you already own. Live TV, movies, and series, with a guide, pause, and rewind. No content included. Bring your own playlist.",
         "url": "https://aeroplay.tv/",
         "downloadUrl": "https://apps.apple.com/app/id6788383081",
-        "image": "https://aeroplay.tv/assets/og-image.jpg",
+        "image": "https://aeroplay.tv/assets/og-image-v2.jpg",
         "screenshot": "https://aeroplay.tv/assets/screenshot-hero.jpg",
         "softwareVersion": "1.1",
         "publisher": { "@id": "https://aeroplay.tv/#organization" },
@@ -85,7 +86,7 @@
           "Episodes advance automatically; shuffle any list",
           "XMLTV program guide (EPG) with now & next",
           "Pause live TV, rewind into what just aired, and play from the archive where your provider keeps one",
-          "Native Mac playback: accurate 4K, smooth motion, fast channel changes",
+          "Native Mac playback: smooth motion and fast channel changes",
           "Hide channel groups, or lock them behind a PIN",
           "Larger text and arrow-key control for the big screen",
           "No ads, no account, no tracking. Private by default."
@@ -98,7 +99,7 @@
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
             "url": "https://apps.apple.com/app/id6788383081",
-            "description": "Free to download and free to keep: one playlist with live playback. Includes a 14-day trial with everything unlocked."
+            "description": "Free to download and free to keep: one playlist or Xtream account, with live TV, movies, series and the guide. Includes a 14-day trial with everything unlocked."
           },
           {
             "@type": "Offer",
@@ -153,14 +154,19 @@
 
         <div class="hero-screenshot">
           <div class="player-frame">
-            <img
-              src="assets/screenshot-hero.jpg"
-              alt="A kingfisher perched on a branch, playing in Aero IPTV"
-              class="player-photo"
-              width="1840"
-              height="1227"
-              fetchpriority="high"
-            >
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/hero-720.webp 720w, assets/hero-1280.webp 1280w, assets/hero-1840.webp 1840w"
+                      sizes="(max-width: 980px) 94vw, 920px">
+              <img
+                src="assets/screenshot-hero.jpg"
+                alt="A kingfisher perched on a branch, playing in Aero IPTV"
+                class="player-photo"
+                width="1840"
+                height="1226"
+                fetchpriority="high"
+              >
+            </picture>
             <!-- Top bar -->
             <div class="player-top" aria-hidden="true">
               <div class="player-head">
@@ -417,19 +423,19 @@
               <div class="shelf">
                 <div class="shelf-title">Recently added</div>
                 <div class="shelf-row">
-                  <figure class="poster"><img src="assets/posters/charade.jpg" alt="" width="200" height="300" loading="lazy"><figcaption><b>Charade</b><span>1963</span></figcaption></figure>
-                  <figure class="poster"><img src="assets/posters/girl-friday.jpg" alt="" width="200" height="300" loading="lazy"><figcaption><b>His Girl Friday</b><span>1940 · ×2</span></figcaption></figure>
-                  <figure class="poster"><img src="assets/posters/the-general.jpg" alt="" width="200" height="300" loading="lazy"><figcaption><b>The General</b><span>1926</span></figcaption></figure>
-                  <figure class="poster"><img src="assets/posters/detour.jpg" alt="" width="200" height="300" loading="lazy"><figcaption><b>Detour</b><span>1945</span></figcaption></figure>
+                  <figure class="poster"><img src="assets/posters/charade.webp" alt="" width="140" height="216" loading="lazy"><figcaption><b>Charade</b><span>1963</span></figcaption></figure>
+                  <figure class="poster"><img src="assets/posters/girl-friday.webp" alt="" width="140" height="216" loading="lazy"><figcaption><b>His Girl Friday</b><span>1940 · ×2</span></figcaption></figure>
+                  <figure class="poster"><img src="assets/posters/the-general.webp" alt="" width="140" height="216" loading="lazy"><figcaption><b>The General</b><span>1926</span></figcaption></figure>
+                  <figure class="poster"><img src="assets/posters/detour.webp" alt="" width="140" height="216" loading="lazy"><figcaption><b>Detour</b><span>1945</span></figcaption></figure>
                 </div>
               </div>
               <div class="shelf">
                 <div class="shelf-title">Highly rated</div>
                 <div class="shelf-row">
-                  <figure class="poster"><img src="assets/posters/caligari.jpg" alt="" width="200" height="300" loading="lazy"><figcaption><b>Dr. Caligari</b><span>1920</span></figcaption></figure>
-                  <figure class="poster"><img src="assets/posters/phantom.jpg" alt="" width="200" height="300" loading="lazy"><figcaption><b>The Phantom</b><span>1925</span></figcaption></figure>
-                  <figure class="poster"><img src="assets/posters/carnival.jpg" alt="" width="200" height="300" loading="lazy"><figcaption><b>Carnival of Souls</b><span>1962</span></figcaption></figure>
-                  <figure class="poster"><img src="assets/posters/living-dead.jpg" alt="" width="200" height="300" loading="lazy"><figcaption><b>Night of the Living Dead</b><span>1968</span></figcaption></figure>
+                  <figure class="poster"><img src="assets/posters/caligari.webp" alt="" width="140" height="216" loading="lazy"><figcaption><b>Dr. Caligari</b><span>1920</span></figcaption></figure>
+                  <figure class="poster"><img src="assets/posters/phantom.webp" alt="" width="140" height="216" loading="lazy"><figcaption><b>The Phantom</b><span>1925</span></figcaption></figure>
+                  <figure class="poster"><img src="assets/posters/carnival.webp" alt="" width="140" height="216" loading="lazy"><figcaption><b>Carnival of Souls</b><span>1962</span></figcaption></figure>
+                  <figure class="poster"><img src="assets/posters/living-dead.webp" alt="" width="140" height="216" loading="lazy"><figcaption><b>Night of the Living Dead</b><span>1968</span></figcaption></figure>
                 </div>
               </div>
             </div>
@@ -445,7 +451,7 @@
           <h3>A guide<br>that matters.</h3>
           <p>The full schedule at a glance. Pause live TV, rewind what just aired, or replay last night from your provider's archive.</p>
           <ul class="showcase-points">
-            <li>Now and next on every channel</li>
+            <li>Now and next from your playlist's guide</li>
             <li>Past shows marked REC, ready to replay</li>
             <li>Catch-up and live rewind come with Aero Pro</li>
           </ul>
