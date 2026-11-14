@@ -1361,59 +1361,54 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
-/* Free and Pro */
-.section-plans {
-  background: var(--bg-section);
-  padding: var(--section-v) 22px;
-  border-top: 1px solid var(--border);
-}
-.plans-inner { max-width: 760px; margin: 0 auto; text-align: center; }
-.section-plans h2 {
-  font-size: clamp(1.9rem, 4vw, 2.75rem);
-  font-weight: 700;
-  letter-spacing: -.045em;
-  line-height: 1.05;
-  margin-bottom: 1.1em;
+/* Free and Pro — lives inside the closing CTA. That surface is dark in both
+   colour schemes, so the cards need no prefers-color-scheme variants. */
+.cta-lede {
+  margin: -8px 0 32px !important;
+  font-size: clamp(1.25rem, 2.6vw, 1.625rem) !important;
+  font-weight: 600;
+  letter-spacing: -.03em;
+  color: var(--text-hero) !important;
 }
 .plans {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  max-width: 760px;
+  margin: 0 auto 36px;
   text-align: left;
 }
 .plan {
-  padding: 28px 28px 30px;
-  border: 1px solid var(--border);
+  padding: 26px 28px 28px;
+  border: 1px solid rgba(255,255,255,.1);
   border-radius: 18px;
-  background: var(--bg-section-alt);
+  background: rgba(255,255,255,.045);
 }
-.plan h3 { font-size: 1.125rem; font-weight: 600; letter-spacing: -.03em; }
-.plan-price {
+.plan h3 { font-size: 1.125rem; font-weight: 600; letter-spacing: -.03em; color: var(--text-hero); }
+.section-cta .plan-price {
   font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -.04em;
+  color: #fff;
   margin: .25em 0 .4em;
 }
-.plan-price span { font-size: 1rem; font-weight: 500; letter-spacing: -.01em; color: var(--text-muted); }
-.plan p:last-child { font-size: .9375rem; line-height: 1.55; color: var(--text-muted); }
+.plan-price span { font-size: 1rem; font-weight: 500; letter-spacing: -.01em; color: var(--text-hero-muted); }
+.section-cta .plan p:last-child { font-size: .9375rem; line-height: 1.55; color: var(--text-hero-muted); margin-bottom: 0; }
 .plan-pro {
-  border-color: rgba(15,181,201,.45);
+  border-color: rgba(15,181,201,.5);
   background:
-    radial-gradient(120% 90% at 100% 0%, rgba(15,181,201,.14) 0%, transparent 60%),
-    var(--bg-section-alt);
+    radial-gradient(120% 90% at 100% 0%, rgba(15,181,201,.2) 0%, transparent 60%),
+    rgba(255,255,255,.045);
 }
-.plan-pro h3 { color: var(--accent-ink); }
-.plans-fine { margin-top: 1.4em; font-size: .9375rem; color: var(--text-muted); }
-@media (prefers-color-scheme: dark) {
-  .plan { background: linear-gradient(180deg, #121a1d 0%, #0e1416 100%); border-color: rgba(255,255,255,.08); }
-  .plan-pro {
-    border-color: rgba(15,181,201,.45);
-    background:
-      radial-gradient(120% 90% at 100% 0%, rgba(15,181,201,.18) 0%, transparent 60%),
-      linear-gradient(180deg, #121a1d 0%, #0e1416 100%);
-  }
+.plan-pro h3 { color: var(--accent-h); }
+@media (max-width: 640px) {
+  .plans { grid-template-columns: 1fr; gap: 14px; }
+  .plan { padding: 22px 22px 24px; }
 }
-@media (max-width: 640px) { .plans { grid-template-columns: 1fr; } }
+
+/* The close sits directly under the neutral-player section, which shares its
+   background in dark mode — a hairline keeps the two apart. */
+.section-cta { border-top: 1px solid var(--border); }
 
 /* Mobile tidy-ups */
 @media (max-width: 620px) {
