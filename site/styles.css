@@ -1,6 +1,6 @@
 /* ============================================================
    Aero IPTV — Apple-style design language
-   No external fonts or CDN. The site loads Google Analytics (assets/analytics.js; see D-123).
+   No external fonts, CDN, analytics or tracking (Google Analytics removed 2026-11-14, D-123).
    System font stack mirrors SF Pro on Apple devices.
    Light / dark via prefers-color-scheme.
    ============================================================ */
@@ -1449,4 +1449,12 @@ a:focus-visible { outline-color: var(--accent-ink); }
 /* Larger tap targets for nav and footer links on phones */
 @media (max-width: 760px) {
   .nav-links a:not(.nav-cta), .site-footer a { padding-block: 10px; }
+}
+/* A path or command in running text (the privacy page's folder path) */
+.prose-page code {
+  font: .875em ui-monospace, "SF Mono", Menlo, monospace;
+  background: var(--accent-soft);
+  padding: 1px 5px;
+  border-radius: 5px;
+  overflow-wrap: anywhere;
 }
